@@ -1,8 +1,6 @@
 # The Farmer Was Replaced
 
-Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplaced.com/), a programming game where you control a drone on a grid farm. You write code in a Python-like language to plant, harvest, move, and eventually coordinate multiple drones.
-
-In-game API is documented in [`__builtins__.py`](__builtins__.py).
+Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplaced.com/), a programming game where you control drones on a grid farm. You write code in a Python-like language to plant, harvest, move, and eventually coordinate multiple drones. All code in this repository is my own work and was not written with AI.
 
 <img width="460" height="215" alt="image" src="https://github.com/user-attachments/assets/4dfed0e9-6bcc-437e-87fd-1fce357e2b15" /><br />
 
@@ -27,35 +25,24 @@ In-game API is documented in [`__builtins__.py`](__builtins__.py).
 
 **Files:** `polyculture/polyculture.py`
 
-Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on maximum grid size and drone count.
+Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on maximum grid size and drone count. Companion planting is performed for each primary tile to avoid harvest wait time.
 
-1. **Init** — spawn up to 32 drones on a grid of cluster origins; each drone plants its four primary tiles.
-2. **Companion planting** — call `get_companion()` on the primary crop, `goto` to the companion coordinate, and plant the requested companion type if the tile mismatches.
-3. **Primary harvest** — return to each cluster tile, water, wait until `can_harvest()`, optionally apply fertilizer + weird substance, harvest, and replant.
-4. **Movement** — `goto` picks the shorter path around the toroidal farm (wrap-around edges).
-
-Polyculture boosts yield by keeping companion plants satisfied. Water levels are kept topped up. Fertilizer accelerates grow time when a plant is not ready to be harvested.
-
-### Pumpkins — row mega-pumpkin
+### Pumpkins
 
 **Files:** `pumpkin/pumpkin.py`, `pumpkin/multi_pumpkin.py`, `pumpkin/single_pumpkin.py`
 
-Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until every pumpkin in a row shares the same `measure()` value. Harvests the mega pumpkin for **n³** yield. Dead pumpkins are replanted on the next pass.
+Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until every pumpkin in a row shares the same `measure()` value. Dead pumpkins are replanted on the next pass.
 
-### Sunflowers — full-farm scan
-
-**Files:** `sunflower.py`
-
-Drones split the farm into rows and sweep each tile to water, till, harvest when ready, and replant sunflowers. Does not yet exploit the 5× power bonus for harvesting the max-petal sunflower last.
-
-### Cactus — parallel odd-even sort
+### Cactus
+Parallel odd-even sort
 
 **Files:** `cactus/cactus_multi.py`, `cactus/plant_stage.py`
 
-Parallel drones plant the full grid, then odd-even sort columns and rows (via `measure()` + `swap()`) until the field is sorted, triggering a recursive harvest worth **n²** cactus.
+After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
 
-### Maze — flood fill on a shared graph
+### Maze
+Parallel smaller mazes with wall hugging and breadth-first search
 
 **Files:** `maze/maze_optimised.py`, `maze/maze_reusable.py`, `maze/maze.py`
 
-Many drones run staggered 8×8 and 4×4 mazes in parallel: each wall-follows once to build an adjacency graph, flood-fills to the treasure (located via `measure()`), walks the route, and repeats the maze 300 times.
+Drones run staggered 8×8 and 4×4 mazes in parallel. Each maze and drone pair first runs a wall-hugging algorithm to build an adjacency graph. Then a BFS is run repeatedly to find the shortest path to the treasure. Adjacency graphs are updated when new shortcuts are discovered.
