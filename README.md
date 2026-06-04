@@ -2,7 +2,7 @@
 
 Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplaced.com/), a programming game where you control drones on a grid farm. You write code in a Python-like language to plant, harvest, move, and eventually coordinate multiple drones. All code in this repository is my own work and was not written with AI.
 
-<img width="460" height="215" alt="image" src="https://github.com/user-attachments/assets/4dfed0e9-6bcc-437e-87fd-1fce357e2b15" /><br />
+<img width="460" height="215" alt="Farmer was replaced logo" src="https://github.com/user-attachments/assets/4dfed0e9-6bcc-437e-87fd-1fce357e2b15" /><br />
 
 
 ## Leaderboard Results
@@ -21,6 +21,12 @@ Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplace
 
 ## Algorithms by crop
 
+### Fastest Reset
+
+**Files:** `fastest_reset.py`
+
+A single linear script that farms from a fresh save to the Leaderboard unlock. Each block looks up the next unlock cost, runs the lightest script that can produce it (line harvest early on, then `hay` / `bush` / `carrot`, polyculture, pumpkins, mazes, and cactus), and calls `unlock()` as soon as resources are ready. Item targets use a small buffer on expansions and “exhaust” halts where spending down inventory is faster than over-farming.
+
 ### Polyculture: Hay, Carrots, and Wood
 
 **Files:** `polyculture/polyculture.py`
@@ -36,7 +42,7 @@ Drones partition the farm into horizontal bands and repeatedly scan their rows, 
 ### Cactus
 Parallel odd-even sort
 
-**Files:** `cactus/cactus_multi.py`, `cactus/plant_stage.py`
+**Files:** `cactus/cactus_multi.py`
 
 After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
 
