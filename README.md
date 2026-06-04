@@ -4,6 +4,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplace
 
 <img width="460" height="215" alt="Farmer was replaced logo" src="https://github.com/user-attachments/assets/4dfed0e9-6bcc-437e-87fd-1fce357e2b15" /><br />
 
+<br />
 
 ## Leaderboard Results
 
@@ -19,6 +20,8 @@ Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplace
 | `Pumpkins` | 200,000,000 | `pumpkin_setup` | 10m 31s |
 | `Pumpkins_Single` | 10,000,000 | `single_pumpkin` | 10m 03s |
 
+<br />
+
 ## Algorithms by crop
 
 ### Fastest Reset
@@ -33,11 +36,15 @@ A single linear script that farms from a fresh save to the Leaderboard unlock. E
 
 Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on maximum grid size and drone count. Companion planting is performed for each primary tile to avoid harvest wait time.
 
+<br />
+
 ### Pumpkins
 
 **Files:** `pumpkin/pumpkin.py`, `pumpkin/multi_pumpkin.py`, `pumpkin/single_pumpkin.py`
 
 Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until every pumpkin in a row shares the same `measure()` value. Dead pumpkins are replanted on the next pass.
+
+<br />
 
 ### Cactus
 Parallel odd-even sort
@@ -45,6 +52,8 @@ Parallel odd-even sort
 **Files:** `cactus/cactus_multi.py`
 
 After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
+
+<br />
 
 ### Maze
 Parallel smaller mazes with wall hugging and breadth-first search
