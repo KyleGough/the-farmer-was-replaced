@@ -2,9 +2,12 @@
 
 Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplaced.com/), a programming game where you control a drone on a grid farm. You write code in a Python-like language to plant, harvest, move, and eventually coordinate multiple drones.
 
-The in-game API is documented in [`__builtins__.py`](__builtins__.py).
+In-game API is documented in [`__builtins__.py`](__builtins__.py).
 
-## Leaderboard results
+<img width="460" height="215" alt="image" src="https://github.com/user-attachments/assets/4dfed0e9-6bcc-437e-87fd-1fce357e2b15" /><br />
+
+
+## Leaderboard Results
 
 | Category | Target | Script | Time |
 |----------|--------|--------|------|
