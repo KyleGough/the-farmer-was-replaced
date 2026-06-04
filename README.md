@@ -8,6 +8,7 @@ The in-game API is documented in [`__builtins__.py`](__builtins__.py).
 
 | Category | Target | Script | Time |
 |----------|--------|--------|------|
+| `Fastest_Reset` | - | `fastest_reset` | 1h 31m 28s |
 | `Maze` | 9,863,168 | `maze_optimised` | 2m 02s |
 | `Carrots` | 2,000,000,000 | `carrot_polyculture` | 5m 31s |
 | `Wood` | 10,000,000,000 | `tree_polyculture` | 6m 09s |
