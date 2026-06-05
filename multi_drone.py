@@ -8,7 +8,6 @@ def move_down(n):
 def init_drone(height, index, harvest_fn, halt):
 	movement.goto(0, get_world_size() - (index + 1) * height)
 	
-	# move_down((index + 1) * height)
 	while not halt():
 		harvest_height(height, harvest_fn)
 

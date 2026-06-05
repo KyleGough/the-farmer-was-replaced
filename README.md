@@ -8,17 +8,17 @@ Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplace
 
 ## Leaderboard Results
 
-| Category | Target | Script | Time |
-|----------|--------|--------|------|
-| `Fastest_Reset` | - | `fastest_reset` | 1h 31m 28s |
-| `Maze` | 9,863,168 | `maze_optimised` | 2m 02s |
-| `Carrots` | 2,000,000,000 | `carrot_polyculture` | 5m 31s |
-| `Wood` | 10,000,000,000 | `tree_polyculture` | 6m 09s |
-| `Sunflowers` | 100,000 | `sunflower_setup` | 4m 03s |
-| `Cactus` | 33,554,432 | `cactus_setup` | 0m 49s |
-| `Hay` | 2,000,000,000 | `hay_polyculture` | 5m 10s |
-| `Pumpkins` | 200,000,000 | `pumpkin_setup` | 10m 31s |
-| `Pumpkins_Single` | 10,000,000 | `single_pumpkin` | 10m 03s |
+| Category          | Target         | Script               | Time       |
+| ----------------- | -------------- | -------------------- | ---------- |
+| `Fastest_Reset`   | -              | `fastest_reset`      | 1h 31m 28s |
+| `Maze`            | 9,863,168      | `maze_optimised`     | 2m 02s     |
+| `Carrots`         | 2,000,000,000  | `carrot_polyculture` | 5m 31s     |
+| `Wood`            | 10,000,000,000 | `tree_polyculture`   | 6m 09s     |
+| `Sunflowers`      | 100,000        | `sunflower_setup`    | 4m 03s     |
+| `Cactus`          | 33,554,432     | `cactus_setup`       | 0m 49s     |
+| `Hay`             | 2,000,000,000  | `hay_polyculture`    | 5m 10s     |
+| `Pumpkins`        | 200,000,000    | `pumpkin_setup`      | 10m 31s    |
+| `Pumpkins_Single` | 10,000,000     | `single_pumpkin`     | 10m 03s    |
 
 <br />
 
@@ -49,6 +49,7 @@ Drones partition the farm into horizontal bands and repeatedly scan their rows, 
 <br />
 
 ### Cactus
+
 Parallel odd-even sort
 
 **Files:** `cactus/cactus_multi.py`
@@ -58,6 +59,7 @@ After an initial planting pass, each half of the grid performs a column odd-even
 <br />
 
 ### Maze
+
 Parallel smaller mazes with wall hugging and breadth-first search
 
 **Files:** `maze/maze_optimised.py`, `maze/maze_reusable.py`, `maze/maze.py`
