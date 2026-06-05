@@ -39,6 +39,8 @@ A single linear script that farms from a fresh save to the Leaderboard unlock. E
 
 Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on maximum grid size and drone count. Companion planting is performed for each primary tile to avoid harvest wait time.
 
+<img width="400" height="225" alt="Polyculture" src="https://github.com/user-attachments/assets/f6811abe-7e51-40ee-b26c-546902a17bf1" />
+
 <br />
 
 ### Maze
