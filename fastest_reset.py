@@ -269,13 +269,11 @@ unlock_check(Unlocks.Polyculture)
 unlock_check(Unlocks.Cactus)
 unlock_check(Unlocks.Cactus)
 
-print(num_items(Items.Carrot), num_items(Items.Hay))
+# Trees 6
 cost = 5000
 polyculture.execute(Entities.Grass, item_halt(Items.Hay, cost))
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, cost))
 sunflower.execute(item_halt(Items.Power, cost))
-
-# Trees 6
 tree_cost = get_unlock_cost(Unlocks.Trees)
 cost = tree_cost[Items.Hay]
 polyculture.execute(Entities.Grass, item_halt(Items.Hay, cost))
@@ -344,7 +342,7 @@ unlock_check(Unlocks.Dinosaurs)
 
 # Hats
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, 2000))
-sunflower.execute(item_halt(Items.Power, 5000))
+sunflower.execute(item_halt(Items.Power, 2500))
 weird_substance.execute(item_halt(Items.Weird_Substance, 65000))
 utils.reset()
 maze_reusable.execute(get_world_size(), 300, 0, 0, item_halt(Items.Gold, 1000000))
