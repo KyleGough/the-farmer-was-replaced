@@ -22,7 +22,6 @@ def plant_cacti_partition(height):
 
 def plant_cacti():
 	partition = get_world_size() / max_drones()
-	print("part", partition)
 	for _ in range(max_drones() - 1):
 		spawn_drone(plant_cacti_partition, partition)
 		for _ in range(partition):

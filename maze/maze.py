@@ -21,7 +21,7 @@ def get_substance_required(size):
 
 def init_maze(amount):
 	if num_items(Items.Weird_Substance) < amount:
-		print("Requires", amount)
+		quick_print("Requires", amount)
 		return False
 	plant(Entities.Bush)
 	restart_maze(amount)
