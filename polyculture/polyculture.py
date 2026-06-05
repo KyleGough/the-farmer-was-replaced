@@ -11,10 +11,10 @@ def init_plant(primary, x, y):
 	if num_items(Items.Water) > 0:
 		use_item(Items.Water)
 
-def harvest_loop(primary, cx, cy):
+def harvest_loop(primary, cx, cy, size):
 	for (x, y) in positions:
 		plant_companion(primary)
-		plant_primary(primary, cx + x, cy + y)
+		plant_primary(primary, (cx + x) % size, (cy + y) % size)
 
 def plant_companion(primary):
 	companion = get_companion()
@@ -51,11 +51,11 @@ def plant_primary(primary, x, y):
 
 	plant(primary)
 		
-def drone_execute(primary, x, y, halt):
+def drone_execute(primary, x, y, size, halt):
 	for (cx, cy) in positions:
 		init_plant(primary, x + cx, y + cy)
 	while not halt():
-		harvest_loop(primary, x, y)
+		harvest_loop(primary, x, y, size)
 	
 def execute(primary, halt):
 	utils.reset()
@@ -66,6 +66,6 @@ def execute(primary, halt):
 			x = (i * 8) + (j * 4)
 			y = (j * 4) + 2
 			if num_drones() < max_drones():	
-				spawn_drone(drone_execute, primary, x  % size, y % size, halt)	
+				spawn_drone(drone_execute, primary, x  % size, y % size, size, halt)	
 			else:	
-				drone_execute(primary, x % size, y % size, halt)
+				drone_execute(primary, x % size, y % size, size, halt)
