@@ -31,6 +31,8 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 A single linear script that farms from a fresh save to the Leaderboard unlock. Each block looks up the next unlock cost, runs the lightest script that can produce it (line harvest early on, then `hay` / `bush` / `carrot`, polyculture, pumpkins, mazes, and cactus), and calls `unlock()` as soon as resources are ready. Item targets use a small buffer on expansions and “exhaust” halts where spending down inventory is faster than over-farming.
 
+<img width="400" height="225" alt="FastestReset" src="https://github.com/user-attachments/assets/71335127-6d8c-4f11-a6e8-2ee14cabf071" />
+
 <br />
 
 ### Polyculture: Hay, Carrots, and Wood
