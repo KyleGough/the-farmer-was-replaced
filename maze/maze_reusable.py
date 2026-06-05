@@ -38,18 +38,22 @@ def get_route(previous):
 	
 	return route
 			
-def follow_route(graph, route):
+def follow_route(graph, route, i):
+	# Heuristic to detect shortcuts every 3 passes.
+	# Reduces run-time about 6 seconds.
+	search_shortcut = i % 3 == 0
+
 	while len(route):		
-		current = route.pop()
-		move(current)
-		x = get_pos_x()
-		y = get_pos_y()
-		for dir in maze.directions:
-			if can_move(dir):
-				(ax, ay) = maze.adjacency_relation[dir]
-				nx = x + ax
-				ny = y + ay
-				graph[(x, y)].add(((nx, ny), dir))
+		move(route.pop())
+		if search_shortcut:
+			x = get_pos_x()
+			y = get_pos_y()
+			for dir in maze.directions:
+				if can_move(dir):
+					ax, ay = maze.adjacency_relation[dir]
+					nx = x + ax
+					ny = y + ay
+					graph[(x, y)].add(((nx, ny), dir))
 		
 def execute(size, iterations, x, y, halt):
 	while not halt():
@@ -57,16 +61,17 @@ def execute(size, iterations, x, y, halt):
 		maze.init_maze(amount)
 		graph = maze.build_graph(size)
 		
-		for _ in range(iterations + 1):
+		for i in range(iterations):
 			if halt():
-				return
+				break
+			if i > 0:
+				maze.restart_maze(amount)
 			previous = flood_fill(graph)
 			route = get_route(previous)
-			follow_route(graph, route)
-			maze.restart_maze(amount)
+			follow_route(graph, route, i)
 		harvest()
 		movement.goto(x, y)
 	
 if __name__ == "__main__":
 	utils.reset()
-	execute(32, 300)
+	execute(32, 300, 0, 0, utils.never_halt)
