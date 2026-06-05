@@ -17,7 +17,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://thefarmerwasreplace
 | `Sunflowers`      | 100,000        | `sunflower_setup`    | 4m 03s     |
 | `Cactus`          | 33,554,432     | `cactus_setup`       | 0m 49s     |
 | `Hay`             | 2,000,000,000  | `hay_polyculture`    | 5m 10s     |
-| `Pumpkins`        | 200,000,000    | `pumpkin_setup`      | 10m 31s    |
+| `Pumpkins`        | 200,000,000    | `pumpkin`            | 10m 31s    |
 | `Pumpkins_Single` | 10,000,000     | `single_pumpkin`     | 10m 03s    |
 
 <br />
