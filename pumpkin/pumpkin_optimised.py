@@ -29,10 +29,10 @@ def harvest_pumpkin(y, size, halt):
 			plant(Entities.Pumpkin)
 			move(East)
 
-        # x coordinates of dead pumpkins.
+		# x coordinates of dead pumpkins.
 		dead_pumpkins = []
 	
-        # Initial scan for dead pumpkins.
+		# Initial scan for dead pumpkins.
 		for i in range(size):
 			utils.water()
 			if not can_harvest():
@@ -47,21 +47,24 @@ def harvest_pumpkin(y, size, halt):
 				movement.goto_x(x)
 
 				if get_entity_type() == None:
-                    # If the pumpkin is not found, the grid has been harvested.
+					# If the pumpkin is not found, the grid has been harvested.
 					dead_pumpkins = []
 					break
 				elif not can_harvest():
-                    # If the pumpkin is dead, replant it.
+					# If the pumpkin is dead, replant it.
 					utils.water()
 					plant(Entities.Pumpkin)
+					if num_items(Items.Fertilizer) > 0:
+						use_item(Items.Fertilizer)
+						use_item(Items.Weird_Substance)
 				else:
-                    # If the pumpkin is not dead, remove it from the list.
+					# If the pumpkin is not dead, remove it from the list.
 					dead_pumpkins.remove(x)
 					
 					
 		movement.goto_x(0)
 
-        # Wait for the mega pumpkin to be ready.
+		# Wait for the mega pumpkin to be ready.
 		while (measure() != measure(West)) and get_entity_type() != None:
 			utils.sleep(200)
 	
