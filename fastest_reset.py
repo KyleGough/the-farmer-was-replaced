@@ -13,59 +13,28 @@ import maze_reusable
 import cactus_multi
 import dinosaur
 
-def test():
-	while True:
-		do_a_flip()
-		
-def buffer():
-	return 2 * (get_world_size() ** 2)
-
-def hay_halt(n):
-	def halt():
-		return num_items(Items.Hay) >= n
-	return halt
-
-def wood_halt(n):
-	def halt():
-		return num_items(Items.Wood) >= n
-	return halt
-	
-def carrot_halt(n):
-	def halt():
-		return num_items(Items.Carrot) >= n
-	return halt
-	
-def power_halt(n):
-	def halt():
-		return num_items(Items.Power) >= n
-	return halt
-	
-def pumpkin_halt(n):
-	def halt():
-		return num_items(Items.Pumpkin) >= n
-	return halt
-	
-def item_halt(item, n):
-	def halt():
-		return num_items(item) >= n
-	return halt	
-	
-def exhaust_hay():
-	return num_items(Items.Hay) <= 2 ** num_unlocked(Unlocks.Grass)
-
-def exhaust_carrot():
-	return num_items(Items.Carrot) <= 2 ** num_unlocked(Unlocks.Carrots)
-
 item_unlock_map = {
   Items.Hay: Unlocks.Grass,
   Items.Carrot: Unlocks.Carrots
 }
 
+# Current unlock amounts.
+unlock_amount = {
+	Unlocks.Grass: 1
+}
+
+def buffer():
+	return 2 * (get_world_size() ** 2)
+
+def item_halt(item, n):
+	def halt():
+		return num_items(item) >= n
+	return halt	
+	
 def exhaust_item(item):
 	def halt():
 		return num_items(item) <= 2 ** num_unlocked(item_unlock_map[item])
 	return halt
-
 
 def stationary_hay(n):
 	while num_items(Items.Hay) < n:
@@ -91,20 +60,13 @@ def line_harvest_carrot(n):
 		if can_harvest():
 			harvest()
 			
-# TODO remove once stable
 def unlock_check(u):
-	if not unlock(u):
-		test()
+	unlock(u)
+	if u in unlock_amount:
+		unlock_amount[u] += 1
 	else:
-		if u in unlock_amount:
-			unlock_amount[u] += 1
-		else:
-			unlock_amount[u] = 1
-
-
-unlock_amount = {
-	Unlocks.Grass: 1
-}
+		unlock_amount[u] = 1
+	quick_print("Unlocked: ", u, unlock_amount[u])
 
 def get_unlock_cost(u):
 	if u in unlock_amount:
@@ -113,8 +75,6 @@ def get_unlock_cost(u):
 		level = 0
 	return get_cost(u, level)
 		
-
-
 # Speed 1
 cost = get_unlock_cost(Unlocks.Speed)[Items.Hay]
 stationary_hay(cost)
@@ -147,40 +107,40 @@ cost = carrot_cost[Items.Wood]
 cost += speed_cost[Items.Wood]
 cost += speed_cost[Items.Carrot]
 cost += get_world_size() ** 2 
-bush.execute(wood_halt(cost))
+bush.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Carrots)
 
 # Speed 3
 cost = speed_cost[Items.Carrot]
-hay.execute(hay_halt(cost))
-carrot.execute(carrot_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
+carrot.execute(item_halt(Items.Carrot, cost))
 unlock_check(Unlocks.Speed) 
 
 # Grass 2
 grass_cost = get_unlock_cost(Unlocks.Grass)
 cost = grass_cost[Items.Hay]
-hay.execute(hay_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
 unlock_check(Unlocks.Grass)
 
 # Expand 3 
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Carrot]
-hay.execute(hay_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
 cost = expand_cost[Items.Wood] + expand_cost[Items.Carrot]
 cost += buffer()
-bush.execute(wood_halt(cost))
+bush.execute(item_halt(Items.Wood, cost))
 cost = expand_cost[Items.Carrot]
-carrot.execute(carrot_halt(cost))
+carrot.execute(item_halt(Items.Carrot, cost))
 unlock_check(Unlocks.Expand)
 
 # Tree 1
 tree_cost = get_unlock_cost(Unlocks.Trees)
 cost = tree_cost[Items.Carrot]
-hay.execute(hay_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
 cost = tree_cost[Items.Wood] + tree_cost[Items.Carrot] + buffer()
-bush.execute(wood_halt(cost))
+bush.execute(item_halt(Items.Wood, cost))
 cost = tree_cost[Items.Carrot]
-carrot.execute(carrot_halt(cost))
+carrot.execute(item_halt(Items.Carrot, cost))
 unlock_check(Unlocks.Trees)
 
 # Watering 1
@@ -188,7 +148,7 @@ unlock_check(Unlocks.Trees)
 water_cost = get_unlock_cost(Unlocks.Watering)
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
 cost = water_cost[Items.Wood] + carrot_cost[Items.Wood]
-trees_carrots.execute(wood_halt(cost))
+trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Carrots)
 
@@ -196,13 +156,13 @@ unlock_check(Unlocks.Carrots)
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Wood]
 if num_items(Items.Wood) < cost:
-	trees_carrots.execute(wood_halt(cost))
+	trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Expand)
 
 # Trees 2
 tree_cost = get_unlock_cost(Unlocks.Trees)
 cost = tree_cost[Items.Hay]
-hay.execute(hay_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
 unlock_check(Unlocks.Trees)
 
 # Speed 4
@@ -210,8 +170,8 @@ unlock_check(Unlocks.Trees)
 # Grass 3
 speed_cost = get_unlock_cost(Unlocks.Speed)
 cost = speed_cost[Items.Carrot]
-hay.execute(hay_halt(cost))
-trees_carrots.execute(carrot_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
+trees_carrots.execute(item_halt(Items.Carrot, cost))
 unlock_check(Unlocks.Speed)
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Grass)
@@ -219,13 +179,13 @@ unlock_check(Unlocks.Grass)
 # Carrots 3
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
 cost = carrot_cost[Items.Wood]
-trees_carrots.execute(wood_halt(cost))
+trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Carrots)
 
 # Speed 5
 speed_cost = get_unlock_cost(Unlocks.Speed)
 cost = speed_cost[Items.Carrot]
-trees_carrots.execute(carrot_halt(cost))
+trees_carrots.execute(item_halt(Items.Carrot, cost))
 unlock_check(Unlocks.Speed)
 
 # Trees 3
@@ -234,7 +194,7 @@ unlock_check(Unlocks.Speed)
 tree_cost = get_unlock_cost(Unlocks.Trees)
 sunflower_cost = get_cost(Unlocks.Sunflowers)
 cost = tree_cost[Items.Hay] + sunflower_cost[Items.Carrot]
-hay.execute(hay_halt(cost))
+hay.execute(item_halt(Items.Hay, cost))
 unlock_check(Unlocks.Trees)
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Fertilizer)
@@ -255,26 +215,26 @@ unlock_check(Unlocks.Pumpkins)
 # Grass 4
 grass_cost = get_unlock_cost(Unlocks.Grass)
 cost = grass_cost[Items.Wood]
-sunflower.execute(exhaust_carrot)
-trees_carrots.execute(wood_halt(cost))
+sunflower.execute(exhaust_item(Items.Carrot))
+trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Grass)
 
 # Trees 4
 # Trees 5
-hay.execute(hay_halt(30000))
+hay.execute(item_halt(Items.Hay, 30000))
 unlock_check(Unlocks.Trees)
 unlock_check(Unlocks.Trees)
 
 # Carrots 4
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
 cost = carrot_cost[Items.Wood]
-trees_carrots.execute(wood_halt(cost))
+trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Carrots)
 
 # Carrots 5
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
 cost = carrot_cost[Items.Wood]
-trees_carrots.execute(wood_halt(cost + buffer()))
+trees_carrots.execute(item_halt(Items.Wood, cost + buffer()))
 unlock_check(Unlocks.Carrots)
 
 # Watering 5
@@ -282,7 +242,7 @@ unlock_check(Unlocks.Carrots)
 # Pumpkins 2
 # Pumpkins 3
 # Grass 5
-trees_carrots.execute(exhaust_hay)
+trees_carrots.execute(exhaust_item(Items.Hay))
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Fertilizer)
 unlock_check(Unlocks.Pumpkins)
@@ -292,19 +252,19 @@ unlock_check(Unlocks.Grass)
 # Expand 5
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Pumpkin]
-pumpkin.execute(pumpkin_halt(cost))
+pumpkin.execute(item_halt(Items.Pumpkin, cost))
 unlock_check(Unlocks.Expand)
 
 # Expand 6
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Pumpkin]
-pumpkin.execute(pumpkin_halt(cost))
+pumpkin.execute(item_halt(Items.Pumpkin, cost))
 unlock_check(Unlocks.Expand)
 
 # Polyculture 1
 # Cactus 1
 # Cactus 2
-pumpkin.execute(exhaust_carrot)
+pumpkin.execute(exhaust_item(Items.Carrot))
 unlock_check(Unlocks.Polyculture)
 unlock_check(Unlocks.Cactus)
 unlock_check(Unlocks.Cactus)
@@ -318,7 +278,7 @@ sunflower.execute(item_halt(Items.Power, cost))
 # Trees 6
 tree_cost = get_unlock_cost(Unlocks.Trees)
 cost = tree_cost[Items.Hay]
-polyculture.execute(Entities.Grass, hay_halt(cost))
+polyculture.execute(Entities.Grass, item_halt(Items.Hay, cost))
 unlock_check(Unlocks.Trees)
 
 # Fertilizer 3
@@ -328,7 +288,7 @@ water_cost = get_unlock_cost(Unlocks.Watering)
 fertilizer_cost = get_unlock_cost(Unlocks.Fertilizer)
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
 cost = water_cost[Items.Wood] + fertilizer_cost[Items.Wood] + carrot_cost[Items.Wood]
-polyculture.execute(Entities.Tree, wood_halt(cost))
+polyculture.execute(Entities.Tree, item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Fertilizer)
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Carrots)
@@ -337,14 +297,15 @@ unlock_check(Unlocks.Carrots)
 maze_cost = get_unlock_cost(Unlocks.Mazes)
 maze_startup_amount = (5 * maze.get_substance_required(get_world_size()))
 cost = maze_cost[Items.Weird_Substance] + maze_startup_amount
-weird_substance.execute(item_halt(Items.Weird_Substance, cost)) # TODO
+weird_substance.execute(item_halt(Items.Weird_Substance, cost))
 unlock_check(Unlocks.Mazes)
 
 # Megafarm 1
 # Megafarm 2
 # Megafarm 3
 megafarm_cost = get_unlock_cost(Unlocks.Megafarm)
-cost = megafarm_cost[Items.Gold] * 21 # TODO * 5
+cost = megafarm_cost[Items.Gold] * 21
+utils.reset()
 maze_reusable.execute(get_world_size(), 300, 0, 0, item_halt(Items.Gold, cost))
 unlock_check(Unlocks.Megafarm)
 unlock_check(Unlocks.Megafarm)
@@ -385,6 +346,7 @@ unlock_check(Unlocks.Dinosaurs)
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, 2000))
 sunflower.execute(item_halt(Items.Power, 5000))
 weird_substance.execute(item_halt(Items.Weird_Substance, 65000))
+utils.reset()
 maze_reusable.execute(get_world_size(), 300, 0, 0, item_halt(Items.Gold, 1000000))
 
 # Leaderboard
