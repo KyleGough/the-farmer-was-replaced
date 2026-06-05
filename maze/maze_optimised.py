@@ -5,7 +5,7 @@ import maze_reusable
 start = num_items(Items.Gold)
 required = start + 9863168
 
-workers = [
+workers_32 = [
 	(4, 28, 8),
 	(12, 12, 8),
 	(12, 20, 8),
@@ -44,7 +44,7 @@ def prepare_drone(x, y, size, halt):
 	utils.sleep(12 * (500 - x - y))
 	maze_reusable.execute(size, 300, x, y, halt)
 
-def execute(halt):
+def execute(halt, workers = workers_32):
 	utils.reset()
 	
 	for (x, y, size) in workers:

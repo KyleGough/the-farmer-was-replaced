@@ -10,6 +10,7 @@ import polyculture
 import weird_substance
 import maze
 import maze_reusable
+import maze_optimised
 import cactus_multi
 import dinosaur
 
@@ -309,6 +310,7 @@ unlock_check(Unlocks.Megafarm)
 unlock_check(Unlocks.Megafarm)
 unlock_check(Unlocks.Megafarm)
 
+# Hats
 # Pumpkin 4
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Pumpkin]
@@ -340,14 +342,21 @@ unlock_check(Unlocks.Dinosaurs)
 unlock_check(Unlocks.Dinosaurs)
 unlock_check(Unlocks.Dinosaurs)
 
-# Hats
+# Leaderboard
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, 2000))
 sunflower.execute(item_halt(Items.Power, 2500))
-weird_substance.execute(item_halt(Items.Weird_Substance, 65000))
+polyculture.execute(Entities.Tree, item_halt(Items.Weird_Substance, 175000), True)
 utils.reset()
-maze_reusable.execute(get_world_size(), 300, 0, 0, item_halt(Items.Gold, 1000000))
-
-# Leaderboard
+workers = [
+	(12, 12, 8),
+	(12, 0, 8),
+	(0, 12, 8),
+	(6, 6, 4),
+	(2, 6, 4),
+	(6, 2, 4),
+	(2, 2, 4)
+]
+maze_optimised.execute(item_halt(Items.Gold, 1000000), workers)
 set_world_size(16)
 dinosaur.execute(item_halt(Items.Bone, 2000000))
 unlock_check(Unlocks.Leaderboard)
