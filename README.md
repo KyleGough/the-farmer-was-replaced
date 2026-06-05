@@ -8,17 +8,17 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 ## Leaderboard Results
 
-| Category          | Target         | Script               | Time       |
-| ----------------- | -------------- | -------------------- | ---------- |
-| `Fastest_Reset`   | -              | `fastest_reset`      | 1h 31m 28s |
-| `Maze`            | 9,863,168      | `maze_optimised`     | 2m 02s     |
-| `Carrots`         | 2,000,000,000  | `carrot_polyculture` | 5m 31s     |
-| `Wood`            | 10,000,000,000 | `tree_polyculture`   | 6m 09s     |
-| `Sunflowers`      | 100,000        | `sunflower_setup`    | 4m 03s     |
-| `Cactus`          | 33,554,432     | `cactus_setup`       | 0m 49s     |
-| `Hay`             | 2,000,000,000  | `hay_polyculture`    | 5m 10s     |
-| `Pumpkins`        | 200,000,000    | `pumpkin`            | 10m 31s    |
-| `Pumpkins_Single` | 10,000,000     | `single_pumpkin`     | 10m 03s    |
+| Category          | Script               | Time       | Rank  |
+| ----------------- | -------------------- | ---------- | ----- |
+| `Fastest_Reset`   | `fastest_reset`      | 1h 31m 28s | 64th  |
+| `Maze`            | `maze_optimised`     | 1m 56s     | 24th  |
+| `Carrots`         | `carrot_polyculture` | 5m 31s     | 79th  |
+| `Wood`            | `tree_polyculture`   | 6m 09s     | 92nd  |
+| `Sunflowers`      | `sunflower`          | 4m 03s     | 105th |
+| `Pumpkins_Single` | `single_pumpkin`     | 10m 03s    | 186th |
+| `Cactus`          | `cactus_multi`       | 0m 49s     | 275th |
+| `Hay`             | `hay_polyculture`    | 5m 10s     | 355th |
+| `Pumpkins`        | `pumpkin`            | 10m 31s    | 377th |
 
 <br />
 
