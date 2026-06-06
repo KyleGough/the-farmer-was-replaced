@@ -4,6 +4,7 @@
 
 import utils
 import movement
+import distribute
 import single_pumpkin
 
 start = num_items(Items.Pumpkin)
@@ -13,13 +14,14 @@ required = start + 200000000
 def execute(halt):
 	utils.reset()
 	size = get_world_size()
-	for y in range(1, max_drones()):
-		spawn_drone(harvest_pumpkin, y, size, halt)
-	harvest_pumpkin(0, size, halt)
+	distribute.distribute_drones(harvest_pumpkin_closure(size, halt))
 	
-def harvest_pumpkin(y, size, halt):
-	movement.goto(0, y)
-		
+def harvest_pumpkin_closure(size, halt):
+	def wrapper():
+		return harvest_pumpkin(size, halt)
+	return wrapper
+	
+def harvest_pumpkin(size, halt):		
 	while not halt():
 		# Plant a new row of pumpkins.
 		for _ in range(size):
@@ -54,9 +56,7 @@ def harvest_pumpkin(y, size, halt):
 					# If the pumpkin is dead, replant it.
 					utils.water()
 					plant(Entities.Pumpkin)
-					if num_items(Items.Fertilizer) > 0:
-						use_item(Items.Fertilizer)
-						use_item(Items.Weird_Substance)
+					use_item(Items.Fertilizer)
 				else:
 					# If the pumpkin is not dead, remove it from the list.
 					dead_pumpkins.remove(x)
