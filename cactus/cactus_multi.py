@@ -7,10 +7,6 @@ required = start + 33554432
 def delay_drone(i, drone_count):
 	utils.sleep(i * (602 + 2))
 
-def delay_drone2(i, drone_count):
-	utils.sleep(i * (602 + (get_world_size() / drone_count)))
-	
-
 def plant_cacti_partition(height):
 	for _ in range(height):
 		for _ in range(get_world_size()):
