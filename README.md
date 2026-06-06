@@ -63,7 +63,7 @@ Drones run staggered 8×8 and 4×4 mazes in parallel. Each maze and drone pair f
 
 Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until every pumpkin in a row shares the same `measure()` value. Dead pumpkins are replanted on the next pass.
 
-<img width="400" height="225" alt="Pumpkin" src="https://github.com/user-attachments/assets/d36c4581-2709-4e66-b162-af1bf5235698" />
+<img width="400" height="225" alt="Pumpkin" src="https://github.com/user-attachments/assets/7041ba9b-6e33-432c-ad15-befe44d60519" />
 
 <br />
 
