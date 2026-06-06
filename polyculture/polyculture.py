@@ -24,7 +24,16 @@ def plant_companion(primary):
 		return
 		
 	plant_type, (x, y) = companion
-	movement.goto(x, y)
+	
+	if primary == Entities.Tree:
+		movement.goto_y(y)
+		if x != get_pos_x():
+			if get_entity_type() == Entities.Bush and can_harvest():
+				harvest()
+
+		movement.goto_x(x)
+	else:
+		movement.goto(x, y)
 	
 	# Do nothing if plant type is already correct.
 	current = get_entity_type()
@@ -34,7 +43,7 @@ def plant_companion(primary):
 	# Till and plant carrot.
 	if plant_type == Entities.Carrot and get_ground_type() == Grounds.Grassland:
 		till()
-	else:		
+	else:
 		harvest()
 	plant(plant_type)
 		
@@ -59,11 +68,11 @@ def drone_execute(primary, x, y, size, weird_substance, halt):
 		init_plant(primary, x + cx, y + cy)
 	while not halt():
 		harvest_loop(primary, x, y, size, weird_substance)
-	
+
 def execute(primary, halt, weird_substance = False):
 	utils.reset()
 	size = get_world_size()	
-
+	
 	for i in range(4):
 		for j in range(8):		
 			x = (i * 8) + (j * 4)

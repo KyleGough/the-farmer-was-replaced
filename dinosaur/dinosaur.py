@@ -1,3 +1,7 @@
+# This is a very naive implementation of snake.
+# The drone moves in a repeating pattern that does not take into account the position of the apples.
+# Implementing a proper algorithm here would reduce the fastest reset time dramatically.
+
 import utils
 
 def init():
