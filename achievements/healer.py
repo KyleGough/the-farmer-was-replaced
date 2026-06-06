@@ -1,3 +1,6 @@
+# Healer
+# Cure an infected plant.
+
 import utils
 
 if __name__ == "__main__":

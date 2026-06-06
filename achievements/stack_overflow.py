@@ -1,4 +1,5 @@
-import utils
+# Stack Overflow
+# Cause a stack overflow.
 
 def execute():
 	execute()

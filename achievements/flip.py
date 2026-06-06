@@ -1,3 +1,6 @@
+# Master Acrobat
+# Do 1000 flips.
+
 import utils
 
 def perform_flip(n):
