@@ -56,7 +56,8 @@ def harvest_pumpkin(size, halt):
 					# If the pumpkin is dead, replant it.
 					utils.water()
 					plant(Entities.Pumpkin)
-					use_item(Items.Fertilizer)
+					if num_items(Items.Fertilizer) > 0:
+						use_item(Items.Fertilizer)
 				else:
 					# If the pumpkin is not dead, remove it from the list.
 					dead_pumpkins.remove(x)
