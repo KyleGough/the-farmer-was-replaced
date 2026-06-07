@@ -16,7 +16,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | `Carrots`         | `carrot_polyculture` | 5m 28s     | 79th  |
 | `Wood`            | `tree_polyculture`   | 5m 53s     | 88nd  |
 | `Sunflowers`      | `sunflower`          | 4m 03s     | 105th |
-| `Cactus`          | `cactus_multi`       | 0m 45s     | 185th |
+| `Cactus`          | `cactus_multi`       | 0m 43s     | 151th |
 | `Pumpkins_Single` | `single_pumpkin`     | 10m 03s    | 186th |
 | `Pumpkins`        | `pumpkin_optimised`  | 9m 00s     | 209th |
 | `Hay`             | `hay_polyculture`    | 5m 08s     | 355th |
@@ -29,7 +29,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 **Files:** `fastest_reset.py`
 
-A single linear script that farms from a fresh save to the Leaderboard unlock. Each block looks up the next unlock cost, runs the lightest script that can produce it (line harvest early on, then `hay` / `bush` / `carrot`, polyculture, pumpkins, mazes, and cactus), and calls `unlock()` as soon as resources are ready. Item targets use a small buffer on expansions and “exhaust” halts where spending down inventory is faster than over-farming.
+Starts from a fresh save all the way to the Leaderboard unlock. Each stage looks up the next unlock cost, runs the lightest script that can produce it (line harvest early on, then simple crop scripts, polyculture, pumpkins, mazes, and cactus), and calls `unlock()` as soon as resources are ready. Most stages reuse existing scripts for simplicity, utilising item requirement or exhaustion detection.
 
 <img width="400" height="225" alt="FastestReset" src="https://github.com/user-attachments/assets/71335127-6d8c-4f11-a6e8-2ee14cabf071" />
 
@@ -59,9 +59,9 @@ Drones run staggered 8×8 and 4×4 mazes in parallel. Each maze and drone pair f
 
 ### Pumpkins
 
-**Files:** `pumpkin/pumpkin.py`, `pumpkin/multi_pumpkin.py`, `pumpkin/single_pumpkin.py`
+**Files:** `pumpkin/pumpkin_optimised.py`
 
-Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until every pumpkin in a row shares the same `measure()` value. Dead pumpkins are replanted on the next pass.
+Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until the east-most and west-most tiles share the same `measure()` value. Dead pumpkins are identified and replanted on subsequent passes.
 
 <img width="400" height="225" alt="Pumpkin" src="https://github.com/user-attachments/assets/7041ba9b-6e33-432c-ad15-befe44d60519" />
 
