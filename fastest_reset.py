@@ -11,7 +11,7 @@ import weird_substance
 import maze
 import maze_reusable
 import maze_optimised
-import cactus_multi
+import cactus_odd_even_sort
 import dinosaur
 
 item_unlock_map = {
@@ -333,7 +333,7 @@ unlock_check(Unlocks.Expand)
 maze_cost = get_unlock_cost(Unlocks.Mazes)
 cost = maze_cost[Items.Cactus] * 2
 pumpkin.execute(exhaust_item(Items.Carrot))
-cactus_multi.execute_half(8, item_halt(Items.Cactus, 1050000))
+cactus_odd_even_sort.execute_half(8, item_halt(Items.Cactus, 1050000))
 unlock_check(Unlocks.Mazes)
 unlock_check(Unlocks.Mazes)
 unlock_check(Unlocks.Mazes)

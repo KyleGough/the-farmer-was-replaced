@@ -2,12 +2,13 @@ filename = {
 	Leaderboards.Hay: "hay_polyculture",
 	Leaderboards.Wood: "tree_polyculture",
 	Leaderboards.Carrots: "carrot_polyculture",
-	Leaderboards.Cactus: "cactus_multi",
+	Leaderboards.Cactus: "cactus_odd_even_sort",
 	Leaderboards.Pumpkins: "pumpkin_optimised",
 	Leaderboards.Pumpkins_Single: "single_pumpkin",
 	Leaderboards.Sunflowers: "sunflower",
 	Leaderboards.Maze: "maze_optimised",
-	Leaderboards.Fastest_Reset: "fastest_reset"
+	Leaderboards.Fastest_Reset: "fastest_reset",
+	Leaderboards.Hay_Single: "hay_single"
 }
 
 def run(leaderboard):

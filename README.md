@@ -9,17 +9,18 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 ## Leaderboard Results
 
-| Category          | Script               | Time       | Rank  |
-| ----------------- | -------------------- | ---------- | ----- |
-| `Fastest_Reset`   | `fastest_reset`      | 1h 18m 22s | 51th  |
-| `Maze`            | `maze_optimised`     | 1m 56s     | 24th  |
-| `Carrots`         | `carrot_polyculture` | 5m 28s     | 79th  |
-| `Wood`            | `tree_polyculture`   | 5m 53s     | 88nd  |
-| `Sunflowers`      | `sunflower`          | 4m 03s     | 105th |
-| `Cactus`          | `cactus_multi`       | 0m 43s     | 151th |
-| `Pumpkins_Single` | `single_pumpkin`     | 10m 03s    | 186th |
-| `Pumpkins`        | `pumpkin_optimised`  | 9m 00s     | 209th |
-| `Hay`             | `hay_polyculture`    | 5m 08s     | 355th |
+| Category          | Script                 | Time       | Rank  |
+| ----------------- | ---------------------- | ---------- | ----- |
+| `Fastest_Reset`   | `fastest_reset`        | 1h 18m 22s | 51th  |
+| `Maze`            | `maze_optimised`       | 1m 56s     | 24th  |
+| `Carrots`         | `carrot_polyculture`   | 5m 28s     | 79th  |
+| `Wood`            | `tree_polyculture`     | 5m 53s     | 88nd  |
+| `Sunflowers`      | `sunflower`            | 4m 03s     | 105th |
+| `Cactus`          | `cactus_odd_even_sort` | 0m 43s     | 151th |
+| `Hay`             | `hay_polyculture`      | 3m 15s     | 161th |
+| `Pumpkins_Single` | `single_pumpkin`       | 10m 03s    | 186th |
+| `Pumpkins`        | `pumpkin_optimised`    | 9m 00s     | 209th |
+| `Hay_Single`      | `hay_single`           | 5m 02s     | 266th | 
 
 <br />
 
@@ -71,7 +72,7 @@ Drones partition the farm into horizontal bands and repeatedly scan their rows, 
 
 Parallel odd-even sort
 
-**Files:** `cactus/cactus_multi.py`
+**Files:** `cactus/cactus_odd_even_sort.py`
 
 After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
 

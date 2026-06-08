@@ -1,13 +1,13 @@
-import utils
-import movement
-import distribute
+from utils import reset, sleep
+from movement import goto
+from distribute import distribute_drones
 
 start = num_items(Items.Cactus)
 required = start + 33554432
 
 # Delays drones to synchronise sorting actions.
 def delay_drone(i, drone_count):
-	utils.sleep(i * 602)
+	sleep(i * 602)
 
 # Distribute drones more efficiently for max world size and drone count runs.
 def plant_stage(drone_count, size):
@@ -18,9 +18,9 @@ def plant_stage(drone_count, size):
 					till()
 				plant(Entities.Cactus)
 				move(East)
-		distribute.distribute_drones(plant_row)
+		distribute_drones(plant_row)
 		# Smallest delay to allow all drones to spawn in sort stage.
-		utils.sleep(201)
+		sleep(201)
 	else:
 		plant_cacti(drone_count, size)
 		
@@ -51,7 +51,6 @@ def sort_column(size):
 		elif get_pos_y() != size - 1 and measure(North) < measure():
 			swap(North)
 		else:
-			# Delay 200 ticks.
 			set_execution_speed(-1)
 
 # Synchronised row sort.
@@ -62,7 +61,6 @@ def sort_row(size):
 		elif get_pos_x() != size - 1 and measure(East) < measure():
 			swap(East)
 		else:
-			# Delay 200 ticks.
 			set_execution_speed(-1)
 
 # Sort columns from left to right.		
@@ -98,11 +96,11 @@ def row_sort(drone_count, partition, size):
 	sort_all_rows(1, drone_count, partition, size)
 	
 def parallel_column_sort(drone_count, size):
-	movement.goto(get_world_size() / 2, get_world_size() - 1)
+	goto(get_world_size() / 2, get_world_size() - 1)
 	column_sort(drone_count, 2, size)
 	
 def parallel_row_sort(drone_count, size):
-	movement.goto(get_world_size() - 1, get_world_size() / 2)
+	goto(get_world_size() - 1, get_world_size() / 2)
 	row_sort(drone_count, 2, size)
 	
 def execute(drone_count, halt):
@@ -114,7 +112,7 @@ def execute(drone_count, halt):
 		plant_stage(drone_count, size)
 		pcs_drone = spawn_drone(parallel_column_sort, d, size)
 		column_sort(d, 2, size)		
-		movement.goto(get_world_size() - 1, 0)
+		goto(get_world_size() - 1, 0)
 		wait_for(pcs_drone)
 		prs_drone = spawn_drone(parallel_row_sort, d, size)
 		row_sort(d, 2, size)
@@ -122,15 +120,15 @@ def execute(drone_count, halt):
 		harvest()
 		
 def execute_half(drone_count, halt):
-	utils.reset()
+	reset()
 	size = get_world_size()
 
 	while not halt():
 		plant_cacti(drone_count, size)
-		movement.goto(0, get_world_size() - 1)
-		utils.sleep(1200)
+		goto(0, get_world_size() - 1)
+		sleep(1200)
 		column_sort(drone_count, 1, size)
-		movement.goto(get_world_size() - 1, 0)
+		goto(get_world_size() - 1, 0)
 		row_sort(drone_count, 1, size)
 		harvest()
 		
