@@ -8,30 +8,20 @@ required = start + 100000000
 def leaderboard_halt():
 	return num_items(Items.Hay) >= required
 
-# Replant if the companion is not a bush.
-def replant_companion():
-	if get_companion()[0] != Entities.Bush:
-		till()
-		till()
-		plant(Entities.Grass)
-
 # Alternates between two spots to harvest and replant.
 def harvest_phase(halt):
 	while not halt():
-		water()
 		while not can_harvest():
-			use_item(Items.Fertilizer)
-		harvest()
-		replant_companion()
+			water()
+		harvest()		
 		move(South)
-		water()
 		while not can_harvest():
-			use_item(Items.Fertilizer)
-		harvest()
-		replant_companion()
+			water()
+		harvest()		
 		move(North)
+
 	
-def drone_execute(halt):
+def execute(halt):
 	water()
 	
 	directions = [
@@ -48,17 +38,8 @@ def drone_execute(halt):
 		plant(Entities.Bush)
 		
 	move(West)
-	water()
-	replant_companion()
-	move(South)
-	water()
-	replant_companion()
-	move(North)
 	harvest_phase(halt)
-	
-def execute(halt):
-	set_world_size(5)	
-	drone_execute(halt)
-				
+			
 if __name__ == "__main__":
+	set_world_size(5)
 	execute(leaderboard_halt)
