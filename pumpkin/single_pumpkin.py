@@ -1,7 +1,10 @@
 import utils
 
 start = num_items(Items.Pumpkin)
-required = start + 10000000 # 10m
+required = start + 10000000
+
+def leaderboard_halt():
+	return num_items(Items.Pumpkin) >= required
 
 def harvest_cell():
 	utils.water()
@@ -9,7 +12,7 @@ def harvest_cell():
 		plant(Entities.Pumpkin)
 		return False
 	return True
-	
+
 def plant_stage(size):
 	for _ in range(size):
 		for _ in range(size):
@@ -20,22 +23,29 @@ def plant_stage(size):
 		move(South)
 
 def execute(halt):
-	utils.reset()
 	rows = set()
-	size = get_world_size()	
+	size = get_world_size()
 	plant_stage(size)
-	
+
 	while not halt():
-		ready = True
-		
 		for i in range(size):
 			if i in rows:
 				move(South)
 				continue
 			rowReady = True
-			for _ in range(size):
+
+			if measure() != None and measure() == measure(West):
+				harvest()
+				rows = set()
+				break
+
+			for _ in range(size - 1):
 				rowReady = harvest_cell() and rowReady
 				move(East)
+
+			rowReady = harvest_cell() and rowReady
+			move(East)
+
 			if rowReady:
 				rows.add(i)
 			move(South)
@@ -44,10 +54,6 @@ def execute(halt):
 			rows = set()
 	harvest()
 
-def leaderboard_halt():
-	return num_items(Items.Pumpkin) >= required
-	
 if __name__ == "__main__":
-	execute(leaderboard_halt)	
-	
-		
+	set_world_size(6)
+	execute(leaderboard_halt)
