@@ -1,0 +1,34 @@
+[MASTER]
+ignore=__builtins__.py
+init-hook='import sys; [sys.path.insert(0, p) for p in (".", "simple", "polyculture", "maze", "cactus", "pumpkin", "dinosaur", "achievements") if p not in sys.path]'
+jobs=0
+py-version=3.8
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    missing-class-docstring,
+    duplicate-code,
+    cyclic-import,
+    singleton-comparison,
+    wrong-import-order,
+    consider-using-get,
+    invalid-name
+
+[FORMAT]
+indent-string='\t'
+max-line-length=120
+
+[VARIABLES]
+additional-builtins=
+    North,East,South,West,
+    Entities,Items,Grounds,Hats,Leaderboards,Unlocks,
+    Entity,Item,Ground,Hat,Leaderboard,Unlock,Direction,Drone,
+    harvest,can_harvest,plant,swap,till,use_item,clear,change_hat,
+    move,can_move,get_pos_x,get_pos_y,get_world_size,
+    get_entity_type,get_ground_type,get_water,num_items,get_companion,measure,
+    spawn_drone,wait_for,has_finished,max_drones,num_drones,
+    get_time,get_tick_count,set_execution_speed,set_world_size,simulate,
+    get_cost,unlock,num_unlocked,
+    random,quick_print,do_a_flip,pet_the_piggy,leaderboard_run

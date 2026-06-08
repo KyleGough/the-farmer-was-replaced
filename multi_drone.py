@@ -2,23 +2,23 @@ import utils
 import movement
 
 def move_down(n):
-	for i in range(n):
+	for _ in range(n):
 		move(South)
-	
+
 def init_drone(height, index, harvest_fn, halt):
 	movement.goto(0, get_world_size() - (index + 1) * height)
-	
+
 	while not halt():
 		harvest_height(height, harvest_fn)
 
 def harvest_height(height, harvest_fn):
-	for i in range(height):
-		for j in range(get_world_size()):
+	for _ in range(height):
+		for _ in range(get_world_size()):
 			utils.water()
 			harvest_fn()
 			move(East)
 		move(South)
-	for i in range(height):
+	for _ in range(height):
 		move(North)
 
 def execute(harvest_fn, halt):

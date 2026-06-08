@@ -4,7 +4,6 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 <img width="1933" height="1057" alt="image" src="https://github.com/user-attachments/assets/ceff82a8-a2b6-49c6-a396-79ef95eafe0e" /> <br />
 
-
 <br />
 
 ## Leaderboard Results
@@ -16,7 +15,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | `Carrots`         | `carrot_polyculture`   | 5m 28s     | 79th  |
 | `Wood`            | `tree_polyculture`     | 5m 53s     | 88nd  |
 | `Sunflowers`      | `sunflower`            | 4m 03s     | 105th |
-| `Hay_Single`      | `hay_single`           | 4m 10s     | 146th | 
+| `Hay_Single`      | `hay_single`           | 4m 10s     | 146th |
 | `Cactus`          | `cactus_odd_even_sort` | 0m 43s     | 151th |
 | `Hay`             | `hay_polyculture`      | 3m 15s     | 161th |
 | `Pumpkins_Single` | `single_pumpkin`       | 10m 03s    | 186th |
@@ -77,4 +76,3 @@ Parallel odd-even sort
 After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
 
 <img width="400" height="225" alt="Cactus" src="https://github.com/user-attachments/assets/f338c34a-90d4-4dbb-9439-bd7a49da3ecc" />
-

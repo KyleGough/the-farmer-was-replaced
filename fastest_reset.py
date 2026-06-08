@@ -1,18 +1,17 @@
-import utils
 import hay
 import bush
 import carrot
-import polyculture
 import trees_carrots
 import sunflower
 import pumpkin
-import polyculture
 import weird_substance
 import maze
 import maze_reusable
 import maze_optimised
 import cactus_odd_even_sort
 import dinosaur
+import polyculture
+import utils
 
 item_unlock_map = {
   Items.Hay: Unlocks.Grass,
@@ -207,7 +206,7 @@ fertilizer_cost = get_unlock_cost(Unlocks.Fertilizer)
 water_cost = get_unlock_cost(Unlocks.Watering)
 pumpkin_cost = get_unlock_cost(Unlocks.Pumpkins)
 cost = fertilizer_cost[Items.Wood] + water_cost[Items.Wood] + pumpkin_cost[Items.Wood]
-trees_carrots.execute(item_halt(Items.Wood, cost)) 
+trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Fertilizer)
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Sunflowers)
