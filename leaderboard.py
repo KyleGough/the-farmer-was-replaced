@@ -13,9 +13,6 @@ filename = {
 
 def run(leaderboard):
 	leaderboard_run(leaderboard, filename[leaderboard], 1000)
-  
+
 if __name__ == "__main__":
 	run(Leaderboards.Fastest_Reset)
-  
-  
-  

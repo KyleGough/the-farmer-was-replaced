@@ -30,8 +30,8 @@ def buffer():
 def item_halt(item, n):
 	def halt():
 		return num_items(item) >= n
-	return halt	
-	
+	return halt
+
 def exhaust_item(item):
 	def halt():
 		return num_items(item) <= 2 ** num_unlocked(item_unlock_map[item])
@@ -40,27 +40,27 @@ def exhaust_item(item):
 def stationary_hay(n):
 	while num_items(Items.Hay) < n:
 		if can_harvest():
-			harvest()		
+			harvest()
 
 def line_harvest_hay(n):
 	while num_items(Items.Hay) < n:
 		harvest()
 		move(North)
-		
+
 def line_harvest_bush(n):
 	while num_items(Items.Wood) < n:
 		plant(Entities.Bush)
 		move(North)
 		if can_harvest():
 			harvest()
-			
+
 def line_harvest_carrot(n):
 	while num_items(Items.Carrot) < n:
 		plant(Entities.Carrot)
 		move(North)
 		if can_harvest():
 			harvest()
-			
+
 def unlock_check(u):
 	unlock(u)
 	if u in unlock_amount:
@@ -75,7 +75,7 @@ def get_unlock_cost(u):
 	else:
 		level = 0
 	return get_cost(u, level)
-		
+
 # Speed 1
 cost = get_unlock_cost(Unlocks.Speed)[Items.Hay]
 stationary_hay(cost)
@@ -83,12 +83,12 @@ unlock_check(Unlocks.Speed)
 
 # Expand 1
 cost = get_unlock_cost(Unlocks.Expand)[Items.Hay]
-stationary_hay(cost)	
+stationary_hay(cost)
 unlock_check(Unlocks.Expand)
-	
-# Plant 	
+
+# Plant
 cost = get_unlock_cost(Unlocks.Plant)[Items.Hay]
-line_harvest_hay(cost)	
+line_harvest_hay(cost)
 unlock_check(Unlocks.Plant)
 
 # Speed 2
@@ -104,10 +104,10 @@ unlock_check(Unlocks.Expand)
 # Carrots 1
 speed_cost = get_unlock_cost(Unlocks.Speed)
 carrot_cost = get_unlock_cost(Unlocks.Carrots)
-cost = carrot_cost[Items.Wood] 
+cost = carrot_cost[Items.Wood]
 cost += speed_cost[Items.Wood]
 cost += speed_cost[Items.Carrot]
-cost += get_world_size() ** 2 
+cost += get_world_size() ** 2
 bush.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Carrots)
 
@@ -115,7 +115,7 @@ unlock_check(Unlocks.Carrots)
 cost = speed_cost[Items.Carrot]
 hay.execute(item_halt(Items.Hay, cost))
 carrot.execute(item_halt(Items.Carrot, cost))
-unlock_check(Unlocks.Speed) 
+unlock_check(Unlocks.Speed)
 
 # Grass 2
 grass_cost = get_unlock_cost(Unlocks.Grass)
@@ -123,7 +123,7 @@ cost = grass_cost[Items.Hay]
 hay.execute(item_halt(Items.Hay, cost))
 unlock_check(Unlocks.Grass)
 
-# Expand 3 
+# Expand 3
 expand_cost = get_unlock_cost(Unlocks.Expand)
 cost = expand_cost[Items.Carrot]
 hay.execute(item_halt(Items.Hay, cost))
@@ -207,7 +207,7 @@ fertilizer_cost = get_unlock_cost(Unlocks.Fertilizer)
 water_cost = get_unlock_cost(Unlocks.Watering)
 pumpkin_cost = get_unlock_cost(Unlocks.Pumpkins)
 cost = fertilizer_cost[Items.Wood] + water_cost[Items.Wood] + pumpkin_cost[Items.Wood]
-trees_carrots.execute(item_halt(Items.Wood, cost))  
+trees_carrots.execute(item_halt(Items.Wood, cost)) 
 unlock_check(Unlocks.Fertilizer)
 unlock_check(Unlocks.Watering)
 unlock_check(Unlocks.Sunflowers)
