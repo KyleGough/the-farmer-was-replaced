@@ -8,7 +8,8 @@ filename = {
 	Leaderboards.Sunflowers: "sunflower",
 	Leaderboards.Maze: "maze_optimised",
 	Leaderboards.Fastest_Reset: "fastest_reset",
-	Leaderboards.Hay_Single: "hay_single"
+	Leaderboards.Hay_Single: "hay_single",
+	Leaderboards.Maze_Single: "maze_reusable"
 }
 
 def run(leaderboard):
