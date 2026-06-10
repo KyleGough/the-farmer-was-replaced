@@ -1,4 +1,4 @@
-import utils
+from utils import never_halt
 from movement import goto, goto_x, goto_y
 
 
@@ -22,14 +22,14 @@ def top_half(apple, length, radius):
 	size = get_world_size()
 	ax, ay = apple
 
+	# Bands to force explore due to tail length.
+	force_bands = max((length - size - size) // size, 0)
+
 	# If apple is not present, skip top half.
-	if ay < radius:
+	if ay < radius and force_bands == 0:
 		for _ in range(size - 1):
 			move(East)
 		return apple, length
-
-	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // size, 0)
 
 	# Iterate over each band.
 	for band in range(radius):
@@ -56,28 +56,34 @@ def bottom_half(apple, length, radius):
 	size = get_world_size()
 	ax, ay = apple
 
+	# Bands to force explore due to tail length.
+	force_bands = max((length - size - size) // size, 0)
+
 	# If apple is not present, skip bottom half.
-	if ay < radius or length > length_threshold:
-		for _ in range(radius):
-			ax, ay = apple
-			x = 2 * (ax // 2) + 1
-			# Explore, if apple contained in the current band.
-			if (x == get_pos_x() and ay < radius) or length > length_threshold:
-				apple, length = maybe_apple(apple, length)
-				for _ in range(radius - 1):
-					move(South)
-					apple, length = maybe_apple(apple, length)
-				move(West)
-				apple, length = maybe_apple(apple, length)
-				for _ in range(radius - 1):
-					move(North)
-					apple, length = maybe_apple(apple, length)
-			else:
-				move(West)
-			move(West)
-	else:
+	if ay >= radius and force_bands == 0:
 		for _ in range(size - 1):
 			move(West)
+		return apple, length
+
+	# Iterate over each band.
+	for band in range(radius):
+		ax, ay = apple
+		band_x = 2 * (ax // 2) + 1
+		# Explore, if apple contained in the current band.
+		if (band_x == get_pos_x() and ay < radius) or band < force_bands:
+			apple, length = maybe_apple(apple, length)
+			for _ in range(radius - 1):
+				move(South)
+				apple, length = maybe_apple(apple, length)
+			move(West)
+			apple, length = maybe_apple(apple, length)
+			for _ in range(radius - 1):
+				move(North)
+				apple, length = maybe_apple(apple, length)
+		else:
+			move(West)
+		move(West)
+
 	return apple, length
 
 def execute(halt):
@@ -86,7 +92,7 @@ def execute(halt):
 	radius = size / 2
 
 	while not halt():
-		goto_y(size / 2)
+		goto_y(radius)
 		change_hat(Hats.Dinosaur_Hat)
 		apple = measure()
 		harvest()
@@ -99,4 +105,4 @@ def execute(halt):
 		change_hat(Hats.Brown_Hat)
 
 if __name__ == "__main__":
-	execute(utils.never_halt)
+	execute(never_halt)

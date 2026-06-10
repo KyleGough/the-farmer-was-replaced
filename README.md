@@ -11,7 +11,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | Category          | Script                 | Time       | Rank  |
 | ----------------- | ---------------------- | ---------- | ----- |
 | `Maze`            | `maze_optimised`       | 1m 53s     | 20th  |
-| `Fastest_Reset`   | `fastest_reset`        | 1h 12m 30s | 41th  |
+| `Fastest_Reset`   | `fastest_reset`        | 1h 12m 24s | 41th  |
 | `Maze_Single`     | `maze_reusable`        | 2m 43s     | 53rd  |
 | `Hay_Single`      | `hay_single`           | 3m 04s     | 65th  |
 | `Carrots`         | `carrot_polyculture`   | 5m 28s     | 79th  |
