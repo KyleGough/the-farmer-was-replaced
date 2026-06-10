@@ -343,7 +343,7 @@ unlock_check(Unlocks.Dinosaurs)
 
 # Leaderboard
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, 2000))
-sunflower.execute(item_halt(Items.Power, 2500))
+sunflower.execute(item_halt(Items.Power, 2000))
 polyculture.execute(Entities.Tree, item_halt(Items.Weird_Substance, 175000), True)
 utils.reset()
 workers = [
