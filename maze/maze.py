@@ -26,11 +26,11 @@ def init_maze(amount):
 	plant(Entities.Bush)
 	restart_maze(amount)
 	return True
-	
+
 def restart_maze(amount):
 	if not use_item(Items.Weird_Substance, amount):
 		harvest()
-	
+
 def check_treasure():
 	e = get_entity_type()
 	if e == Entities.Treasure or e == Entities.Grass:
@@ -40,27 +40,28 @@ def check_treasure():
 def add_adjacency(graph):
 	x = get_pos_x()
 	y = get_pos_y()
-	
-	for dir in [North, East, South, West]:
+
+	for dir in directions:
 		if can_move(dir):
 			if (x, y) not in graph:
 				graph[(x, y)] = set()
 			(nx, ny) = adjacency_relation[dir]
 			graph[(x, y)].add(((x + nx, y + ny), dir))
-	
+
 # Traverses the maze hugging the left wall.
 def build_graph(size):
 	graph = {}
 	lastDirection = East
-	
-	while len(graph) < size * size:
-		add_adjacency(graph)		
+	tiles = size ** 2
+
+	while len(graph) < tiles:
+		add_adjacency(graph)
 		for i in range(4):
 			nextIndex = (i + directionNum[lastDirection]) % 4
-			nextDirection = directions[nextIndex]			
-			
+			nextDirection = directions[nextIndex]
+
 			if move(nextDirection):
 				lastDirection = nextDirection
 				break
-		
+
 	return graph

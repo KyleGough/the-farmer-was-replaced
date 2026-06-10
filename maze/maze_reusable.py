@@ -1,6 +1,6 @@
-import utils
-import movement
+from movement import goto
 import maze
+import stack
 
 start = num_items(Items.Gold)
 required = start + 616448
@@ -9,48 +9,47 @@ def leaderboard_halt():
 	return num_items(Items.Gold) >= required
 
 def flood_fill(graph):
-	t = measure()
+	treasure = measure()
 	visited = set()
 	start = (get_pos_x(), get_pos_y())
 	frontier = { start: None }
 	next_frontier = {}
-	found_treasure = False
 	previous = {}
 
-	while not found_treasure:
+	while frontier:
 		next_frontier = {}
 		for pos in frontier:
-			if pos == t:
-				found_treasure = True
-				break
-
-			for (n, d) in graph[pos]:
-				if n not in visited:
-					next_frontier[n] = pos
-					previous[n] = (pos, d)
+			for (neighbour, direction) in graph[pos]:
+				if neighbour not in visited:
+					previous[neighbour] = (pos, direction)
+					if neighbour == treasure:
+						return previous, treasure
+					next_frontier[neighbour] = pos
 					visited.add(pos)
 		frontier = next_frontier
 
-	return previous
+	return previous, treasure
 
 # Gets a route from treasure to current position.
-def get_route(previous):
-	pos = measure()
-	route = []
+def get_route(previous, treasure):
+	pos = treasure
+	route = None
 
 	while pos in previous:
 		pos, dir = previous[pos]
-		route.append(dir)
+		route = stack.push(route, dir)
 
 	return route
 
 def follow_route(graph, route, i):
-	# Heuristic to detect shortcuts every 4 passes.
+	# Heuristic to detect shortcuts every 3 passes.
 	# Reduces run-time about 6 seconds.
 	search_shortcut = i % 3 == 1
 
-	while len(route):
-		move(route.pop())
+	while route:
+		move(stack.peek(route))
+		route = stack.pop(route)
+
 		if search_shortcut:
 			x = get_pos_x()
 			y = get_pos_y()
@@ -72,11 +71,11 @@ def execute(size, iterations, x, y, halt):
 				break
 			if i > 0:
 				maze.restart_maze(amount)
-			previous = flood_fill(graph)
-			route = get_route(previous)
+			previous, treasure = flood_fill(graph)
+			route = get_route(previous, treasure)
 			follow_route(graph, route, i)
 		harvest()
-		movement.goto(x, y)
+		goto(x, y)
 
 if __name__ == "__main__":
 	execute(8, 300, 0, 0, leaderboard_halt)
