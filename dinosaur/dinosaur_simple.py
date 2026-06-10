@@ -1,14 +1,11 @@
 from utils import never_halt
-from movement import goto, goto_x, goto_y
-
+from movement import goto
 
 start = num_items(Items.Bone)
 required = start + 33488928
 
 def leaderboard_halt():
 	return num_items(Items.Bone) >= required
-
-length_threshold = 44
 
 # Update length and apple position if apple present.
 def maybe_apple(apple, length):
@@ -23,7 +20,7 @@ def top_half(apple, length, radius):
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // size, 0)
+	force_bands = max((length - size - size) // (size - 2), 0)
 
 	# If apple is not present, skip top half.
 	if ay < radius and force_bands == 0:
@@ -57,7 +54,7 @@ def bottom_half(apple, length, radius):
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // size, 0)
+	force_bands = max((length - size - size) // (radius - 2), 0)
 
 	# If apple is not present, skip bottom half.
 	if ay >= radius and force_bands == 0:
@@ -68,7 +65,7 @@ def bottom_half(apple, length, radius):
 	# Iterate over each band.
 	for band in range(radius):
 		ax, ay = apple
-		band_x = 2 * (ax // 2) + 1
+		band_x = (2 * (ax // 2)) + 1
 		# Explore, if apple contained in the current band.
 		if (band_x == get_pos_x() and ay < radius) or band < force_bands:
 			apple, length = maybe_apple(apple, length)
@@ -92,7 +89,7 @@ def execute(halt):
 	radius = size / 2
 
 	while not halt():
-		goto_y(radius)
+		goto(0, radius)
 		change_hat(Hats.Dinosaur_Hat)
 		apple = measure()
 		harvest()
@@ -105,4 +102,4 @@ def execute(halt):
 		change_hat(Hats.Brown_Hat)
 
 if __name__ == "__main__":
-	execute(never_halt)
+	execute(leaderboard_halt)
