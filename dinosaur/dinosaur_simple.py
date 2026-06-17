@@ -20,7 +20,7 @@ def top_half(apple, length, radius):
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // (size - 2), 0)
+	force_bands = max((length - size - size) // (size - 3), 0)
 
 	# If apple is not present, skip top half.
 	if ay < radius and force_bands == 0:
@@ -54,7 +54,7 @@ def bottom_half(apple, length, radius):
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // (radius - 2), 0)
+	force_bands = max((length - size - size) // (size - 3), 0)
 
 	# If apple is not present, skip bottom half.
 	if ay >= radius and force_bands == 0:
@@ -84,7 +84,7 @@ def bottom_half(apple, length, radius):
 	return apple, length
 
 def execute(halt):
-	set_world_size(16)
+	set_world_size(32)
 	size = get_world_size()
 	radius = size / 2
 

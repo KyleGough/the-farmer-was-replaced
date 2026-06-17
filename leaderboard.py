@@ -10,7 +10,8 @@ filename = {
 	Leaderboards.Fastest_Reset: "fastest_reset",
 	Leaderboards.Hay_Single: "hay_single",
 	Leaderboards.Maze_Single: "maze_reusable",
-	Leaderboards.Dinosaur: "dinosaur_simple"
+	Leaderboards.Dinosaur: "dinosaur_simple",
+	Leaderboards.Carrots_Single: "carrot_single",
 }
 
 def run(leaderboard):

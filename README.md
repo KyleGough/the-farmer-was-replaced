@@ -14,9 +14,11 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | `Fastest_Reset`   | `fastest_reset`        | 1h 12m 24s | 41th  |
 | `Maze_Single`     | `maze_reusable`        | 2m 43s     | 53rd  |
 | `Hay_Single`      | `hay_single`           | 3m 04s     | 65th  |
+| `Carrot_Single`   | `carrot_single`        | 8m 13s     | 78th  |
 | `Carrots`         | `carrot_polyculture`   | 5m 28s     | 79th  |
 | `Wood`            | `tree_polyculture`     | 5m 53s     | 88nd  |
 | `Sunflowers`      | `sunflower`            | 4m 03s     | 105th |
+| `Dinosaur`        | `dinosaur_simple`      | 16m 13s    | 120th |
 | `Pumpkins_Single` | `single_pumpkin`       | 9m 01s     | 130th |
 | `Cactus`          | `cactus_odd_even_sort` | 0m 43s     | 151th |
 | `Hay`             | `hay_polyculture`      | 3m 15s     | 161th |
