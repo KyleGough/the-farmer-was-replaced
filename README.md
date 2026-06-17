@@ -33,8 +33,6 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 ### Fastest Reset
 
-**Files:** `fastest_reset.py`
-
 Starts from a fresh save all the way to the Leaderboard unlock. Each stage looks up the next unlock cost, runs the lightest script that can produce it (line harvest early on, then simple crop scripts, polyculture, pumpkins, mazes, and cactus), and calls `unlock()` as soon as resources are ready. Most stages reuse existing scripts for simplicity, utilising item requirement or exhaustion detection.
 
 <img width="400" height="225" alt="FastestReset" src="https://github.com/user-attachments/assets/71335127-6d8c-4f11-a6e8-2ee14cabf071" />
@@ -42,8 +40,6 @@ Starts from a fresh save all the way to the Leaderboard unlock. Each stage looks
 <br />
 
 ### Polyculture: Hay, Carrots, and Wood
-
-**Files:** `polyculture/polyculture.py`
 
 Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on maximum grid size and drone count. Companion planting is performed for each primary tile to avoid harvest wait time.
 
@@ -55,8 +51,6 @@ Each drone owns a cluster of 4 primary tiles. This pattern tiles the plane on ma
 
 Parallel smaller mazes with wall hugging and breadth-first search
 
-**Files:** `maze/maze_optimised.py`, `maze/maze_reusable.py`, `maze/maze.py`
-
 Drones run staggered 8×8 and 4×4 mazes in parallel. Each maze and drone pair first runs a wall-hugging algorithm to build an adjacency graph. Then a BFS is run repeatedly to find the shortest path to the treasure. Adjacency graphs are updated when new shortcuts are discovered.
 
 <img width="400" height="225" alt="Maze" src="https://github.com/user-attachments/assets/fd621219-b85e-4b27-84e3-ba6e86c76d28" />
@@ -64,8 +58,6 @@ Drones run staggered 8×8 and 4×4 mazes in parallel. Each maze and drone pair f
 <br />
 
 ### Pumpkins
-
-**Files:** `pumpkin/pumpkin_optimised.py`
 
 Drones partition the farm into horizontal bands and repeatedly scan their rows, planting and watering immature tiles until the east-most and west-most tiles share the same `measure()` value. Dead pumpkins are identified and replanted on subsequent passes.
 
@@ -76,8 +68,6 @@ Drones partition the farm into horizontal bands and repeatedly scan their rows, 
 ### Cactus
 
 Parallel odd-even sort
-
-**Files:** `cactus/cactus_odd_even_sort.py`
 
 After an initial planting pass, each half of the grid performs a column odd-even sort with 16 drones each, followed by a row odd-even sort.
 
