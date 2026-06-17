@@ -29,7 +29,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 <br />
 
-## Algorithms by crop
+## Algorithms by Leaderboard
 
 | `Demo` | `Description` |
 | ------ | ------------- |
