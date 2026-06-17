@@ -4,6 +4,10 @@ from movement import goto
 start = num_items(Items.Bone)
 required = start + 33488928
 
+# Fraction of length to total grid area for the strategy
+# to switch to a full circuit.
+full_circuit_threshold = 0.40
+
 def leaderboard_halt():
 	return num_items(Items.Bone) >= required
 
@@ -15,12 +19,21 @@ def maybe_apple(apple, length):
 	else:
 		return apple, length
 
+# Returns the number of bands to force explore due to tail length.
+def range_bucket(x, size):
+	step = (size * 2) - 4
+	if x <= size:
+		return 0
+	if x >= (size ** 2) * full_circuit_threshold:
+		return 1000
+	return (x - size - 1) // step + 1
+
 def top_half(apple, length, radius):
 	size = get_world_size()
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // (size - 3), 0)
+	force_bands = range_bucket(length, size)
 
 	# If apple is not present, skip top half.
 	if ay < radius and force_bands == 0:
@@ -33,14 +46,19 @@ def top_half(apple, length, radius):
 		ax, ay = apple
 		band_x = 2 * (ax // 2)
 		# Explore, if apple contained in the current band.
-		if (band_x == get_pos_x() and ay >= radius) or band < force_bands:
+		apple_in_band = band_x == get_pos_x() and ay >= radius
+		if apple_in_band or band < force_bands:
+			if apple_in_band and band >= force_bands:
+				branch_length = ay - radius
+			else:
+				branch_length = radius - 1
 			apple, length = maybe_apple(apple, length)
-			for _ in range(radius - 1):
+			for _ in range(branch_length):
 				move(North)
 				apple, length = maybe_apple(apple, length)
 			move(East)
 			apple, length = maybe_apple(apple, length)
-			for _ in range(radius - 1):
+			for _ in range(branch_length):
 				move(South)
 				apple, length = maybe_apple(apple, length)
 		else:
@@ -54,7 +72,7 @@ def bottom_half(apple, length, radius):
 	ax, ay = apple
 
 	# Bands to force explore due to tail length.
-	force_bands = max((length - size - size) // (size - 3), 0)
+	force_bands = range_bucket(length, size)
 
 	# If apple is not present, skip bottom half.
 	if ay >= radius and force_bands == 0:
@@ -67,14 +85,19 @@ def bottom_half(apple, length, radius):
 		ax, ay = apple
 		band_x = (2 * (ax // 2)) + 1
 		# Explore, if apple contained in the current band.
-		if (band_x == get_pos_x() and ay < radius) or band < force_bands:
+		apple_in_band = band_x == get_pos_x() and ay < radius
+		if apple_in_band or band < force_bands:
+			if apple_in_band and band >= force_bands:
+				branch_length = radius - 1 - ay
+			else:
+				branch_length = radius - 1
 			apple, length = maybe_apple(apple, length)
-			for _ in range(radius - 1):
+			for _ in range(branch_length):
 				move(South)
 				apple, length = maybe_apple(apple, length)
 			move(West)
 			apple, length = maybe_apple(apple, length)
-			for _ in range(radius - 1):
+			for _ in range(branch_length):
 				move(North)
 				apple, length = maybe_apple(apple, length)
 		else:
@@ -84,7 +107,6 @@ def bottom_half(apple, length, radius):
 	return apple, length
 
 def execute(halt):
-	set_world_size(32)
 	size = get_world_size()
 	radius = size / 2
 
@@ -102,4 +124,5 @@ def execute(halt):
 		change_hat(Hats.Brown_Hat)
 
 if __name__ == "__main__":
+	set_world_size(32)
 	execute(leaderboard_halt)

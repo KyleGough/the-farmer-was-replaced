@@ -13,13 +13,13 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [`Maze`](maze/maze_optimised.py)                     | 1m 53s       | 20<sup>th</sup>    |
 | [`Fastest_Reset`](fastest_reset.py)                  | 1h 12m 24s   | 41<sup>th</sup>    |
 | [`Maze_Single`](maze/maze_reusable.py)               | 2m 43s       | 53<sup>rd</sup>    |
+| [`Dinosaur`](dinosaur/dinosaur_simple.py)            | 14m 41s      | 55<sup>th</sup>    |
 | [`Hay_Single`](polyculture/hay_single.py)            | 3m 04s       | 65<sup>th</sup>    |
 | [`Wood_Single`](polyculture/wood_single.py)          | 8m 41s       | 70<sup>th</sup>    |
 | [`Carrot_Single`](polyculture/carrot_single.py)      | 8m 13s       | 78<sup>th</sup>    |
 | [`Carrots`](polyculture/carrot_polyculture.py)       | 5m 28s       | 79<sup>th</sup>    |
 | [`Wood`](polyculture/tree_polyculture.py)            | 5m 53s       | 88<sup>nd</sup>    |
 | [`Sunflowers`](simple/sunflower.py)                  | 4m 03s       | 105<sup>th</sup>   |
-| [`Dinosaur`](dinosaur/dinosaur_simple.py)            | 16m 13s      | 120<sup>th</sup>   |
 | [`Pumpkins_Single`](pumpkin/single_pumpkin.py)       | 9m 01s       | 130<sup>th</sup>   |
 | [`Cactus`](cactus/cactus_odd_even_sort.py)           | 0m 43s       | 151<sup>th</sup>   |
 | [`Hay`](polyculture/hay_polyculture.py)              | 3m 15s       | 161<sup>th</sup>   |

@@ -1,4 +1,4 @@
-# Distributes 32 drones across a column of tilesas fast as possible using a binary split.
+# Distributes 32 drones across a column of tiles as fast as possible using a binary split.
 # fn is a function that will be called when the drone is ready.
 # `move()` calls are unpacked from for loops to save ticks.
 
