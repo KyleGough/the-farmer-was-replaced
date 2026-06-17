@@ -12,6 +12,7 @@ filename = {
 	Leaderboards.Maze_Single: "maze_reusable",
 	Leaderboards.Dinosaur: "dinosaur_simple",
 	Leaderboards.Carrots_Single: "carrot_single",
+	Leaderboards.Wood_Single: "wood_single"
 }
 
 def run(leaderboard):
