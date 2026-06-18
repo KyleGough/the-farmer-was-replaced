@@ -8,24 +8,24 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 ## Leaderboard Times
 
-| Category                                             | Time         | Rank  |
-| ---------------------------------------------------- | ------------ | ----- |
-| [Maze](maze/maze_32_drones.py)                       | `1m 53s`     | `20`  |
-| [Fastest_Reset](fastest_reset.py)                    | `1h 00m 52s` | `34`  |
-| [Maze_Single](maze/maze_reusable.py)                 | `2m 43s`     | `53`  |
-| [Sunflowers_Single](sunflowers/sunflowers_single.py) | `5m 35s`     | `54`  |
-| [Dinosaur](dinosaur/dinosaur_simple.py)              | `14m 41s`    | `55`  |
-| [Hay_Single](polyculture/hay_single.py)              | `3m 04s`     | `65`  |
-| [Wood_Single](polyculture/wood_single.py)            | `8m 41s`     | `70`  |
-| [Carrot_Single](polyculture/carrot_single.py)        | `8m 13s`     | `78`  |
-| [Carrots](polyculture/carrot_polyculture.py)         | `5m 28s`     | `79`  |
-| [Wood](polyculture/tree_polyculture.py)              | `5m 53s`     | `88`  |
-| [Sunflowers](sunflowers/sunflower.py)                | `4m 03s`     | `105` |
-| [Cactus_Single](cactus_single.py)                    | `0m 25s`     | `105` |
-| [Pumpkins_Single](pumpkin/single_pumpkin.py)         | `9m 01s`     | `130` |
-| [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`     | `151` |
-| [Hay](polyculture/hay_polyculture.py)                | `3m 15s`     | `161` |
-| [Pumpkins](pumpkin/pumpkin_optimised.py)             | `9m 00s`     | `209` |
+| Category                                             | Time      | Rank  |
+| ---------------------------------------------------- | --------- | ----- |
+| [Maze](maze/maze_32_drones.py)                       | `1m 53s`  | `20`  |
+| [Fastest_Reset](fastest_reset.py)                    | `59m 55s` | `34`  |
+| [Maze_Single](maze/maze_reusable.py)                 | `2m 43s`  | `53`  |
+| [Sunflowers_Single](sunflowers/sunflowers_single.py) | `5m 35s`  | `54`  |
+| [Dinosaur](dinosaur/dinosaur_simple.py)              | `14m 41s` | `55`  |
+| [Hay_Single](polyculture/hay_single.py)              | `3m 04s`  | `65`  |
+| [Wood_Single](polyculture/wood_single.py)            | `8m 41s`  | `70`  |
+| [Carrot_Single](polyculture/carrot_single.py)        | `8m 13s`  | `78`  |
+| [Carrots](polyculture/carrot_polyculture.py)         | `5m 28s`  | `79`  |
+| [Wood](polyculture/tree_polyculture.py)              | `5m 53s`  | `88`  |
+| [Sunflowers](sunflowers/sunflower.py)                | `4m 03s`  | `105` |
+| [Cactus_Single](cactus_single.py)                    | `0m 25s`  | `105` |
+| [Pumpkins_Single](pumpkin/single_pumpkin.py)         | `9m 01s`  | `130` |
+| [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`  | `151` |
+| [Hay](polyculture/hay_polyculture.py)                | `3m 15s`  | `161` |
+| [Pumpkins](pumpkin/pumpkin_optimised.py)             | `9m 00s`  | `209` |
 
 <br />
 
