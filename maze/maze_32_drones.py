@@ -1,11 +1,12 @@
-import utils
-import movement
-import maze_reusable
+import maze_multi
 
 start = num_items(Items.Gold)
 required = start + 9863168
 
-workers_32 = [
+def leaderboard_halt():
+	return num_items(Items.Gold) >= required
+
+workers = (
 	(4, 28, 8),
 	(12, 12, 8),
 	(12, 20, 8),
@@ -37,23 +38,10 @@ workers_32 = [
 	(6, 2, 4),
 	(2, 6, 4),
 	(2, 2, 4),
-]
+)
 
-def prepare_drone(x, y, size, halt):
-	movement.goto(x, y)
-	utils.sleep(12 * (500 - x - y))
-	maze_reusable.execute(size, 300, x, y, halt)
-
-def execute(halt, workers = workers_32):
-	utils.reset()
-	
-	for (x, y, size) in workers:
-		spawn_drone(prepare_drone, x, y, size, halt)
-	while not halt():
-		do_a_flip()
-	
-def leaderboard_halt():
-	return num_items(Items.Gold) >= required
+def execute(halt):
+	maze_multi.execute(workers, halt)
 
 if __name__ == "__main__":
 	execute(leaderboard_halt)

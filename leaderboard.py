@@ -6,7 +6,7 @@ filename = {
 	Leaderboards.Pumpkins: "pumpkin_optimised",
 	Leaderboards.Pumpkins_Single: "single_pumpkin",
 	Leaderboards.Sunflowers: "sunflowers",
-	Leaderboards.Maze: "maze_optimised",
+	Leaderboards.Maze: "maze_32_drones",
 	Leaderboards.Fastest_Reset: "fastest_reset",
 	Leaderboards.Hay_Single: "hay_single",
 	Leaderboards.Maze_Single: "maze_reusable",
