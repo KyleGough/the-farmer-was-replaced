@@ -37,11 +37,21 @@ def plant_phase():
 
 # Harvests sunflowers in order of most petals to least petals.
 def harvest_phase(petal_map):
-	for count in range(15, 6, -1):
+	# Harvest sunflowers with more than 7 petals.
+	for count in range(15, 7, -1):
 		coords = petal_map[count]
 		for (x, y) in coords:
 			goto(x, y)
 			harvest()
+
+	# Harvest 7 petal sunflowers until there are l10 left.
+	petal_7 = petal_map[7]
+	while len(petal_7) >= 10:
+		for (x, y) in petal_7:
+			goto(x, y)
+			harvest()
+			petal_7.remove((x, y))
+			break
 
 def execute(halt):
 	while not halt():
@@ -50,4 +60,5 @@ def execute(halt):
 		goto(0, 0)
 
 if __name__ == "__main__":
+	set_world_size(8)
 	execute(leaderboard_halt)
