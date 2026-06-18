@@ -5,7 +5,7 @@ filename = {
 	Leaderboards.Cactus: "cactus_odd_even_sort",
 	Leaderboards.Pumpkins: "pumpkin_optimised",
 	Leaderboards.Pumpkins_Single: "single_pumpkin",
-	Leaderboards.Sunflowers: "sunflower",
+	Leaderboards.Sunflowers: "sunflowers",
 	Leaderboards.Maze: "maze_optimised",
 	Leaderboards.Fastest_Reset: "fastest_reset",
 	Leaderboards.Hay_Single: "hay_single",
@@ -13,7 +13,7 @@ filename = {
 	Leaderboards.Dinosaur: "dinosaur_simple",
 	Leaderboards.Carrots_Single: "carrot_single",
 	Leaderboards.Wood_Single: "wood_single",
-	Leaderboards.Sunflowers_Single: "sunflower_single",
+	Leaderboards.Sunflowers_Single: "sunflowers_single",
 	Leaderboards.Cactus_Single: "cactus_single"
 }
 

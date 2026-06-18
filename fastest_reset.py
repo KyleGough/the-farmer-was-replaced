@@ -1,17 +1,19 @@
+import utils
 import hay
 import bush
 import carrot
+import polyculture
 import trees_carrots
-import sunflower
+import sunflowers_single
+import sunflowers
 import pumpkin
+import polyculture
 import weird_substance
 import maze
 import maze_reusable
 import maze_optimised
 import cactus_odd_even_sort
-import dinosaur
-import polyculture
-import utils
+import dinosaur_simple
 
 item_unlock_map = {
   Items.Hay: Unlocks.Grass,
@@ -192,6 +194,7 @@ unlock_check(Unlocks.Speed)
 # Watering 3
 # Fertilizer 1
 tree_cost = get_unlock_cost(Unlocks.Trees)
+utils.reset()
 sunflower_cost = get_cost(Unlocks.Sunflowers)
 cost = tree_cost[Items.Hay] + sunflower_cost[Items.Carrot]
 hay.execute(item_halt(Items.Hay, cost))
@@ -215,7 +218,8 @@ unlock_check(Unlocks.Pumpkins)
 # Grass 4
 grass_cost = get_unlock_cost(Unlocks.Grass)
 cost = grass_cost[Items.Wood]
-sunflower.execute(exhaust_item(Items.Carrot))
+utils.reset()
+sunflowers_single.execute(item_halt(Items.Power, 450))
 trees_carrots.execute(item_halt(Items.Wood, cost))
 unlock_check(Unlocks.Grass)
 
@@ -273,7 +277,8 @@ unlock_check(Unlocks.Cactus)
 cost = 5000
 polyculture.execute(Entities.Grass, item_halt(Items.Hay, cost))
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, cost))
-sunflower.execute(item_halt(Items.Power, cost))
+utils.reset()
+sunflowers_single.execute(item_halt(Items.Power, cost))
 tree_cost = get_unlock_cost(Unlocks.Trees)
 cost = tree_cost[Items.Hay]
 polyculture.execute(Entities.Grass, item_halt(Items.Hay, cost))
@@ -343,7 +348,7 @@ unlock_check(Unlocks.Dinosaurs)
 
 # Leaderboard
 polyculture.execute(Entities.Carrot, item_halt(Items.Carrot, 2000))
-sunflower.execute(item_halt(Items.Power, 2000))
+sunflowers.execute(item_halt(Items.Power, 1600))
 polyculture.execute(Entities.Tree, item_halt(Items.Weird_Substance, 175000), True)
 utils.reset()
 workers = [
@@ -357,5 +362,5 @@ workers = [
 ]
 maze_optimised.execute(item_halt(Items.Gold, 1000000), workers)
 set_world_size(16)
-dinosaur.execute(item_halt(Items.Bone, 2000000))
+dinosaur_simple.execute(item_halt(Items.Bone, 2000000))
 unlock_check(Unlocks.Leaderboard)
