@@ -1,5 +1,4 @@
 import utils
-import single_pumpkin
 
 def move_down(n):
 	for i in range(n):
@@ -29,10 +28,10 @@ def harvest_row():
 		m.add(measure())
 		move(East)
 	return len(m) == 1
-		
+
 def harvest_pumpkin(id, height, halt):
 	move_down(id * height)
-	
+
 	while not halt():
 		for i in range(height):
 			if harvest_row():
@@ -40,6 +39,6 @@ def harvest_pumpkin(id, height, halt):
 			move(South)
 		for i in range(height):
 			move(North)
-		
+
 if __name__ == "__main__":
 	execute(utils.never_halt)

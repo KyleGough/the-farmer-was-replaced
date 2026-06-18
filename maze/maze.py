@@ -1,5 +1,3 @@
-import utils
-
 directionNum = {
 	North: 0,
 	East: 1,

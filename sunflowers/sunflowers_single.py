@@ -1,4 +1,4 @@
-from utils import reset, simple_farm, water
+from utils import water
 from movement import goto
 
 start = num_items(Items.Power)

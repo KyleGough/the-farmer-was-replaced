@@ -1,4 +1,3 @@
-from utils import never_halt
 from movement import goto
 
 start = num_items(Items.Bone)
