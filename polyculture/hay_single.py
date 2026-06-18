@@ -1,4 +1,6 @@
-from utils import water
+from utils import sleep, water
+from movement import goto
+from distribute import distribute_drones
 
 start = num_items(Items.Hay)
 required = start + 100000000
@@ -38,7 +40,10 @@ def harvest_phase(companions, halt):
 			water()
 			move(direction)
 
-if __name__ == "__main__":
+def execute(halt):
 	set_world_size(5)
 	companions = prepare_phase()
-	harvest_phase(companions, leaderboard_halt)
+	harvest_phase(companions, halt)
+
+if __name__ == "__main__":
+	execute(leaderboard_halt)

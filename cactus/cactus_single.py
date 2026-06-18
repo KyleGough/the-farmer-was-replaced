@@ -4,7 +4,8 @@ def row_sort(size):
 	for x in range(size):
 		goto_x(x)
 		pos = x
-		till()
+		if get_ground_type() == Grounds.Grassland:
+			till()
 		plant(Entities.Cactus)
 		while pos > 0 and measure() < measure(West):
 			swap(West)
