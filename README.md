@@ -6,7 +6,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 <br />
 
-## Leaderboard Results
+## Leaderboard Times
 
 | Category                                               | Time         | Rank               |
 | ------------------------------------------------------ | ------------ | ------------------ |
