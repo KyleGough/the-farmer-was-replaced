@@ -23,10 +23,10 @@ def column_sort(size):
 
 def execute():
 	size = get_world_size()
-	for y in range(size):
+	for _ in range(size):
 		row_sort(size)
 		move(North)
-	for x in range(size):
+	for _ in range(size):
 		column_sort(size)
 		move(East)
 	harvest()
