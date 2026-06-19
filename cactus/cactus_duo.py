@@ -1,4 +1,4 @@
-from movement import goto, goto_x, goto_y
+from movement import goto
 from cactus_single import row_sort, column_sort
 
 def parallel_row_sort(size, partition, offset):

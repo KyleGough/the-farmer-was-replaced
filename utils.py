@@ -7,16 +7,6 @@ def reset():
 def sleep(ticks):
 	list(range(ticks - 3))
 
-# Runs a simple scan infinitely.
-def execute(fn):
-	size = get_world_size()
-	while True:
-		for _ in range(size):
-			for _ in range(size):
-				fn()
-				move(East)
-			move(South)
-
 # Runs a scan until a condition is met.
 def execute_until(fn, halt):
 	size = get_world_size()

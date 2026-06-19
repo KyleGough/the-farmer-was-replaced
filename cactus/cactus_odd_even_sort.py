@@ -23,7 +23,7 @@ def plant_stage(drone_count, size):
 		sleep(201)
 	else:
 		plant_cacti(drone_count, size)
-		
+
 # Plant cacti across multiple rows.
 def plant_cacti_partition(height, size):
 	for _ in range(height):
@@ -33,7 +33,7 @@ def plant_cacti_partition(height, size):
 			plant(Entities.Cactus)
 			move(East)
 		move(South)
-		
+
 # Distribute drones in bands to plant the grid.
 def plant_cacti(drone_count, size):
 	partition = size / drone_count
@@ -42,7 +42,7 @@ def plant_cacti(drone_count, size):
 		for _ in range(partition):
 			move(South)
 	plant_cacti_partition(partition, size)
-	
+
 # Synchronised column sort.
 def sort_column(size):
 	for _ in range(size - 1):
@@ -63,20 +63,20 @@ def sort_row(size):
 		else:
 			set_execution_speed(-1)
 
-# Sort columns from left to right.		
+# Sort columns from left to right.
 def sort_all_columns(i, drone_count, partition, size):
 	delay_drone(i, drone_count)
 	for _ in range(get_world_size() / partition):
 		sort_column(size)
 		move(East)
-		
+
 # Sort rows from bottom to top.
 def sort_all_rows(i, drone_count, partition, size):
 	delay_drone(i, drone_count)
 	for _ in range(get_world_size() / partition):
 		sort_row(size)
 		move(North)
-		
+
 # Distribute drones along the column.
 def column_sort(drone_count, partition, size):
 	height = get_world_size() / drone_count
@@ -94,44 +94,30 @@ def row_sort(drone_count, partition, size):
 		for _ in range(height):
 			move(East)
 	sort_all_rows(1, drone_count, partition, size)
-	
+
 def parallel_column_sort(drone_count, size):
 	goto(get_world_size() / 2, get_world_size() - 1)
 	column_sort(drone_count, 2, size)
-	
+
 def parallel_row_sort(drone_count, size):
 	goto(get_world_size() - 1, get_world_size() / 2)
 	row_sort(drone_count, 2, size)
-	
+
 def execute(drone_count, halt):
 	move(South)
 	d = drone_count / 2
 	size = get_world_size()
-	
+
 	while not halt():
 		plant_stage(drone_count, size)
 		pcs_drone = spawn_drone(parallel_column_sort, d, size)
-		column_sort(d, 2, size)		
+		column_sort(d, 2, size)
 		goto(get_world_size() - 1, 0)
 		wait_for(pcs_drone)
 		prs_drone = spawn_drone(parallel_row_sort, d, size)
 		row_sort(d, 2, size)
 		wait_for(prs_drone)
 		harvest()
-		
-def execute_half(drone_count, halt):
-	reset()
-	size = get_world_size()
-
-	while not halt():
-		plant_cacti(drone_count, size)
-		goto(0, get_world_size() - 1)
-		sleep(1200)
-		column_sort(drone_count, 1, size)
-		goto(get_world_size() - 1, 0)
-		row_sort(drone_count, 1, size)
-		harvest()
-		
 
 def leaderboard_halt():
 	return num_items(Items.Cactus) >= required

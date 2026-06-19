@@ -5,7 +5,6 @@
 import utils
 import movement
 import distribute
-import single_pumpkin
 
 start = num_items(Items.Pumpkin)
 required = start + 200000000
@@ -15,13 +14,13 @@ def execute(halt):
 	utils.reset()
 	size = get_world_size()
 	distribute.distribute_drones(harvest_pumpkin_closure(size, halt))
-	
+
 def harvest_pumpkin_closure(size, halt):
 	def wrapper():
 		return harvest_pumpkin(size, halt)
 	return wrapper
-	
-def harvest_pumpkin(size, halt):		
+
+def harvest_pumpkin(size, halt):
 	while not halt():
 		# Plant a new row of pumpkins.
 		for _ in range(size):
@@ -33,7 +32,7 @@ def harvest_pumpkin(size, halt):
 
 		# x coordinates of dead pumpkins.
 		dead_pumpkins = []
-	
+
 		# Initial scan for dead pumpkins.
 		for i in range(size):
 			utils.water()
@@ -45,7 +44,7 @@ def harvest_pumpkin(size, halt):
 
 		# Replant dead pumpkins.
 		while len(dead_pumpkins):
-			for x in dead_pumpkins:				
+			for x in dead_pumpkins:
 				movement.goto_x(x)
 
 				if get_entity_type() == None:
@@ -61,16 +60,16 @@ def harvest_pumpkin(size, halt):
 				else:
 					# If the pumpkin is not dead, remove it from the list.
 					dead_pumpkins.remove(x)
-					
-					
+
+
 		movement.goto_x(0)
 
 		# Wait for the mega pumpkin to be ready.
 		while (measure() != measure(West)) and get_entity_type() != None:
 			utils.sleep(200)
-	
+
 		harvest()
-		
+
 def leaderboard_halt():
 	return num_items(Items.Pumpkin) >= required
 
