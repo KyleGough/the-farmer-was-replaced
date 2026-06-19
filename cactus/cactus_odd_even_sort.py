@@ -1,4 +1,4 @@
-from utils import reset, sleep
+from utils import sleep
 from movement import goto
 from distribute import distribute_drones
 

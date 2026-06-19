@@ -1,6 +1,4 @@
-from utils import sleep, water
-from movement import goto
-from distribute import distribute_drones
+from utils import water
 
 start = num_items(Items.Hay)
 required = start + 100000000

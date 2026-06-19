@@ -1,6 +1,6 @@
 from fastest_reset_utils import item_halt, upgrade
 from custom_harvest import static_harvest, line_harvest, bush_3x3, hay_line, balanced_3x3, balanced_3x3_tree, balanced_4x4, tree_carrot_6x6, balanced_6x6, hay_6x6, prepare_bush_polyculture_medium, prepare_bush_polyculture_large
-from movement import goto, goto_y
+from movement import goto_y
 import sunflowers_single
 import sunflowers
 import single_pumpkin
