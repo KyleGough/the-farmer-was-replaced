@@ -1,4 +1,3 @@
-from fastest_reset_utils import item_halt, upgrade
 from custom_harvest import static_harvest, line_harvest, bush_3x3, hay_line, balanced_3x3, balanced_3x3_tree, balanced_4x4, tree_carrot_6x6, balanced_6x6, hay_6x6, prepare_bush_polyculture_medium, prepare_bush_polyculture_large
 from movement import goto_y
 import sunflowers_single
@@ -19,6 +18,27 @@ import trees_carrots
 import polyculture_medium
 import polyculture_large
 import weird_substance_med
+
+# Current unlock amounts.
+unlock_amount = {
+	Unlocks.Grass: 1
+}
+
+def upgrade(u):
+	if not unlock(u):
+		quick_print("Unable to unlock", u)
+		while True:
+			do_a_flip()
+	if u in unlock_amount:
+		unlock_amount[u] += 1
+	else:
+		unlock_amount[u] = 1
+	quick_print("[", get_time(), "]", u, unlock_amount[u])
+
+def item_halt(item, n):
+	def halt():
+		return num_items(item) >= n
+	return halt
 
 def execute():
 	# Speed 1

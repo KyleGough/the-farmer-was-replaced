@@ -1,5 +1,4 @@
 from utils import toil, wait_harvest
-from fastest_reset_utils import toil
 from movement import goto, goto_y
 
 def static_harvest(n):
