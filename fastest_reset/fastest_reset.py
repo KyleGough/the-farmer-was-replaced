@@ -7,13 +7,11 @@ import multi_pumpkin
 import carrot_duo
 import polyculture
 import maze_reusable
+import maze_multi
 import hay_single
 import cactus_duo
 import cactus_odd_even_sort
 import dinosaur_simple
-import maze_4_drones
-import maze_8_drones
-import maze_16_drones
 import trees_carrots
 import polyculture_medium
 import polyculture_large
@@ -235,13 +233,11 @@ def execute():
 	sunflowers_single.execute(halt)
 
 	# Trees 3 TODO - multi drone
-	halt = item_halt(Items.Hay, 1200)
+	halt = item_halt(Items.Hay, 9200)
 	hay_single.execute(halt)
 	upgrade(Unlocks.Trees)
 
-	# Trees 4 TODO
-	halt = item_halt(Items.Hay, 8000)
-	hay_single.execute(halt)
+	# Trees 4
 	upgrade(Unlocks.Trees)
 
 	# Carrots 4
@@ -319,7 +315,7 @@ def execute():
 
 	# Megafarm 3
 	halt = item_halt(Items.Gold, 32000)
-	maze_4_drones.execute(halt)
+	maze_multi.execute(halt)
 	upgrade(Unlocks.Megafarm)
 
 	# Trees 5 TODO
@@ -395,7 +391,7 @@ def execute():
 	set_world_size(16)
 	clear()
 	halt = item_halt(Items.Gold, 128000)
-	maze_8_drones.execute(halt)
+	maze_multi.execute(halt)
 	upgrade(Unlocks.Megafarm)
 
 	# Final power restock.
@@ -449,7 +445,7 @@ def execute():
 	halt = item_halt(Items.Bone, 2000000)
 	dinosaur_simple.execute(halt)
 	halt = item_halt(Items.Gold, 1000000)
-	maze_16_drones.execute(halt)
+	maze_multi.execute(halt)
 	clear()
 	upgrade(Unlocks.Leaderboard)
 

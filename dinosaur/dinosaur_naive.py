@@ -1,7 +1,7 @@
 # This is a very naive implementation of snake.
 # The drone moves in a repeating pattern that does not take into account the position of the apples.
 
-from utils import never_halt,reset
+from utils import never_halt, reset
 
 def naive_loop(size):
 	horizontal = [East, West]

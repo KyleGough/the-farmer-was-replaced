@@ -1,7 +1,7 @@
 # Master Acrobat
 # Do 1000 flips.
 
-import utils
+from utils import reset
 
 def perform_flip(n):
 	for i in range(n):
@@ -14,5 +14,5 @@ def execute(total_flips):
 	perform_flip(n)
 
 if __name__ == "__main__":
-	utils.reset()
+	reset()
 	execute(1000)
