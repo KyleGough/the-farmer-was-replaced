@@ -2,8 +2,8 @@ from custom_harvest import static_harvest, line_harvest, bush_3x3, hay_line, bal
 from movement import goto_y
 import sunflowers_single
 import sunflowers
-import single_pumpkin
-import multi_pumpkin
+import pumpkin_single
+import pumpkin_multi
 import carrot_duo
 import polyculture
 import maze_reusable
@@ -181,7 +181,7 @@ def execute():
 	balanced_6x6(halt)
 	clear()
 	halt = item_halt(Items.Pumpkin, 3000)
-	single_pumpkin.execute(halt)
+	pumpkin_single.execute(halt)
 	upgrade(Unlocks.Polyculture)
 
 	# Speed 5
@@ -198,7 +198,7 @@ def execute():
 	polyculture.drone_execute(Entities.Carrot, 0, 0, 6, False, halt)
 	clear()
 	halt = item_halt(Items.Pumpkin, 1000)
-	single_pumpkin.execute(halt)
+	pumpkin_single.execute(halt)
 	upgrade(Unlocks.Expand)
 
 	# Fertilizer 2
@@ -260,12 +260,12 @@ def execute():
 	halt = item_halt(Items.Carrot, 3250)
 	carrot_duo.execute(halt)
 	halt = item_halt(Items.Pumpkin, 8000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	upgrade(Unlocks.Expand)
 
 	# Cactus 1
 	halt = item_halt(Items.Pumpkin, 5000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	upgrade(Unlocks.Cactus)
 
 	# Dinosaurs 1
@@ -297,7 +297,7 @@ def execute():
 	carrot_duo.execute(halt)
 	clear()
 	halt = item_halt(Items.Pumpkin, 2000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	clear()
 	halt = item_halt(Items.Cactus, 72000)
 	while not halt():
@@ -384,7 +384,7 @@ def execute():
 	# Expand 7
 	clear()
 	halt = item_halt(Items.Pumpkin, 64000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	upgrade(Unlocks.Expand)
 
 	# Megafarm 4
@@ -411,12 +411,12 @@ def execute():
 	halt = item_halt(Items.Carrot, 50000)
 	trees_carrots.execute(halt)
 	halt = item_halt(Items.Pumpkin, 20000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	upgrade(Unlocks.Cactus)
 
 	# Cactus 3
 	halt = item_halt(Items.Pumpkin, 160000)
-	multi_pumpkin.execute(halt)
+	pumpkin_multi.execute(halt)
 	upgrade(Unlocks.Cactus)
 
 	# Dinosaurs 3

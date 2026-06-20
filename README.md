@@ -23,7 +23,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Wood](polyculture/tree_polyculture.py)              | `5m 53s`  | `88`  |
 | [Sunflowers](sunflowers/sunflowers.py)               | `4m 03s`  | `105` |
 | [Cactus_Single](cactus/cactus_single.py)             | `0m 25s`  | `105` |
-| [Pumpkins_Single](pumpkin/single_pumpkin.py)         | `9m 01s`  | `130` |
+| [Pumpkins_Single](pumpkin/pumpkin_single.py)         | `9m 01s`  | `130` |
 | [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`  | `151` |
 | [Pumpkins](pumpkin/pumpkin_optimised.py)             | `9m 00s`  | `209` |
 
