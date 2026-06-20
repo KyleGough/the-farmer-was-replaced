@@ -1,3 +1,7 @@
+def move_down(n):
+	for _ in range(n):
+		move(South)
+
 def move_direction(direction, n):
 	for _ in range(n):
 		move(direction)

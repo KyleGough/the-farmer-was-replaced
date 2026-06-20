@@ -1,12 +1,8 @@
-import utils
-import movement
-
-def move_down(n):
-	for _ in range(n):
-		move(South)
+from utils import reset, water
+from movement import move_down, goto
 
 def init_drone(height, index, harvest_fn, halt):
-	movement.goto(0, get_world_size() - (index + 1) * height)
+	goto(0, get_world_size() - (index + 1) * height)
 
 	while not halt():
 		harvest_height(height, harvest_fn)
@@ -14,7 +10,7 @@ def init_drone(height, index, harvest_fn, halt):
 def harvest_height(height, harvest_fn):
 	for _ in range(height):
 		for _ in range(get_world_size()):
-			utils.water()
+			water()
 			harvest_fn()
 			move(East)
 		move(South)
@@ -22,7 +18,7 @@ def harvest_height(height, harvest_fn):
 		move(North)
 
 def execute(harvest_fn, halt):
-	utils.reset()
+	reset()
 	if num_drones() < max_drones():
 		partition = get_world_size() / max_drones()
 		for i in range(max_drones() - 1):

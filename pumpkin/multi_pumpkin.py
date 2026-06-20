@@ -1,8 +1,5 @@
 from utils import never_halt, reset, toil, water
-
-def move_down(n):
-	for i in range(n):
-		move(South)
+from movement import move_down
 
 def execute(halt):
 	reset()

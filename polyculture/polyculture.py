@@ -1,12 +1,12 @@
-import utils
-import movement
+from utils import reset
+from movement import goto, goto_x, goto_y
 
 # Relative positions of the companion drones.
 positions = [(0, 0), (3, 1), (2, -2), (5, -1)]
 
 # Plant a primary plant on a specific tile.
 def init_plant(primary, x, y):
-	movement.goto(x, y)
+	goto(x, y)
 	if primary == Entities.Carrot and get_ground_type() == Grounds.Grassland:
 		till()
 	plant(primary)
@@ -26,14 +26,14 @@ def plant_companion(primary):
 	plant_type, (x, y) = companion
 
 	if primary == Entities.Tree:
-		movement.goto_y(y)
+		goto_y(y)
 		if x != get_pos_x():
 			if get_entity_type() == Entities.Bush and can_harvest():
 				harvest()
 
-		movement.goto_x(x)
+		goto_x(x)
 	else:
-		movement.goto(x, y)
+		goto(x, y)
 
 	# Do nothing if plant type is already correct.
 	current = get_entity_type()
@@ -48,7 +48,7 @@ def plant_companion(primary):
 	plant(plant_type)
 
 def plant_primary(primary, x, y, weird_substance):
-	movement.goto(x, y)
+	goto(x, y)
 
 	use_item(Items.Water)
 
@@ -70,7 +70,7 @@ def drone_execute(primary, x, y, size, weird_substance, halt):
 		harvest_loop(primary, x, y, size, weird_substance)
 
 def execute(primary, halt, weird_substance = False):
-	utils.reset()
+	reset()
 	size = get_world_size()
 
 	for i in range(4):

@@ -3,7 +3,7 @@
 # Dead pumpkins are recorded in a list and replanted on the next pass.
 
 from utils import reset, sleep, toil, water
-import movement
+from movement import goto_x
 import distribute
 
 start = num_items(Items.Pumpkin)
@@ -44,7 +44,7 @@ def harvest_pumpkin(size, halt):
 		# Replant dead pumpkins.
 		while len(dead_pumpkins):
 			for x in dead_pumpkins:
-				movement.goto_x(x)
+				goto_x(x)
 
 				if get_entity_type() == None:
 					# If the pumpkin is not found, the grid has been harvested.
@@ -61,7 +61,7 @@ def harvest_pumpkin(size, halt):
 					dead_pumpkins.remove(x)
 
 
-		movement.goto_x(0)
+		goto_x(0)
 
 		# Wait for the mega pumpkin to be ready.
 		while (measure() != measure(West)) and get_entity_type() != None:

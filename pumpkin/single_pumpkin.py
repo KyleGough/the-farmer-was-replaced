@@ -1,4 +1,4 @@
-import utils
+from utils import water
 
 start = num_items(Items.Pumpkin)
 required = start + 10000000
@@ -7,7 +7,7 @@ def leaderboard_halt():
 	return num_items(Items.Pumpkin) >= required
 
 def harvest_cell():
-	utils.water()
+	water()
 	if not can_harvest():
 		plant(Entities.Pumpkin)
 		return False

@@ -1,4 +1,4 @@
-import utils
+from utils import reset
 import maze
 
 directionNum = {
@@ -23,25 +23,24 @@ def traverse(directions, directionNum):
 	lastDirection = East
 	while True:
 		if maze.check_treasure():
-			return			
+			return
 		for i in range(4):
 			nextIndex = (i + directionNum[lastDirection]) % 4
 			nextDirection = directions[nextIndex]
-			
+
 			if move(nextDirection):
 				lastDirection = nextDirection
 				break
 
 def solve_maze(amount):
-	utils.reset()
+	reset()
 	maze.init_maze(amount)
 	if max_drones() > 1:
 		# Spawn a second drone that hugs the right wall.
 		spawn_drone(traverse, reverseDirections, reverseDirectionNum)
 	traverse(directions, directionNum)
-		
+
 if __name__ == "__main__":
 	amount = maze.get_substance_required(get_world_size())
 	while True:
 		solve_maze(amount)
-		
