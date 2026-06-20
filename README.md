@@ -13,6 +13,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Fastest_Reset](fastest_reset/fastest_reset.py)      | `49m 37s` | `20`  |
 | [Maze](maze/maze_multi.py)                           | `1m 53s`  | `20`  |
 | [Maze_Single](maze/maze_reusable.py)                 | `2m 43s`  | `53`  |
+| [Hay](polyculture/hay_polyculture.py)                | `2m 03s`  | `53`  |
 | [Sunflowers_Single](sunflowers/sunflowers_single.py) | `5m 35s`  | `54`  |
 | [Dinosaur](dinosaur/dinosaur_simple.py)              | `14m 41s` | `55`  |
 | [Hay_Single](polyculture/hay_single.py)              | `3m 03s`  | `65`  |
@@ -24,7 +25,6 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Cactus_Single](cactus/cactus_single.py)             | `0m 25s`  | `105` |
 | [Pumpkins_Single](pumpkin/single_pumpkin.py)         | `9m 01s`  | `130` |
 | [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`  | `151` |
-| [Hay](polyculture/hay_polyculture.py)                | `3m 15s`  | `161` |
 | [Pumpkins](pumpkin/pumpkin_optimised.py)             | `9m 00s`  | `209` |
 
 <br />
