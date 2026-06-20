@@ -53,10 +53,9 @@ def harvest_half(x, y, size):
 def harvest_pumpkin(x, y, size, halt):
 	goto(x, y)
 	while not halt():
-		d = spawn_drone(harvest_half, x, y, size)
-		harvest_half(x + size // 2, y, size)
+		d = spawn_drone(harvest_half, x + size // 2, y, size)
+		harvest_half(x, y, size)
 		wait_for(d)
-		goto(x, y)
 		harvest()
 
 workers = (
