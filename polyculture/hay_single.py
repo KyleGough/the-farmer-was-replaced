@@ -1,4 +1,4 @@
-from utils import water
+from utils import water, wait_harvest
 
 start = num_items(Items.Hay)
 required = start + 100000000
@@ -30,9 +30,7 @@ def prepare_phase():
 def harvest_phase(companions, halt):
 	while not halt():
 		for direction in (North, East, South, West):
-			while not can_harvest():
-				continue
-			harvest()
+			wait_harvest()
 			while get_companion() not in companions:
 				harvest()
 			water()

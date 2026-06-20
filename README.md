@@ -10,7 +10,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 
 | Category                                             | Time      | Rank  |
 | ---------------------------------------------------- | --------- | ----- |
-| [Fastest_Reset](fastest_reset.py)                    | `49m 37s` | `20`  |
+| [Fastest_Reset](fastest_reset/fastest_reset.py)      | `49m 37s` | `20`  |
 | [Maze](maze/maze_32_drones.py)                       | `1m 53s`  | `20`  |
 | [Maze_Single](maze/maze_reusable.py)                 | `2m 43s`  | `53`  |
 | [Sunflowers_Single](sunflowers/sunflowers_single.py) | `5m 35s`  | `54`  |

@@ -2,7 +2,7 @@
 # Each drone harvests a horizontal band of pumpkins.
 # Dead pumpkins are recorded in a list and replanted on the next pass.
 
-import utils
+from utils import reset, sleep, toil, water
 import movement
 import distribute
 
@@ -11,7 +11,7 @@ required = start + 200000000
 
 # Distribute drones evenly across rows of the farm.
 def execute(halt):
-	utils.reset()
+	reset()
 	size = get_world_size()
 	distribute.distribute_drones(harvest_pumpkin_closure(size, halt))
 
@@ -25,8 +25,7 @@ def harvest_pumpkin(size, halt):
 		# Plant a new row of pumpkins.
 		for _ in range(size):
 			use_item(Items.Water)
-			if get_ground_type() == Grounds.Grassland:
-				till()
+			toil()
 			plant(Entities.Pumpkin)
 			move(East)
 
@@ -35,9 +34,9 @@ def harvest_pumpkin(size, halt):
 
 		# Initial scan for dead pumpkins.
 		for i in range(size):
-			utils.water()
+			water()
 			if not can_harvest():
-				utils.water()
+				water()
 				plant(Entities.Pumpkin)
 				dead_pumpkins.append(i)
 			move(East)
@@ -53,7 +52,7 @@ def harvest_pumpkin(size, halt):
 					break
 				elif not can_harvest():
 					# If the pumpkin is dead, replant it.
-					utils.water()
+					water()
 					plant(Entities.Pumpkin)
 					if num_items(Items.Fertilizer) > 0:
 						use_item(Items.Fertilizer)
@@ -66,7 +65,7 @@ def harvest_pumpkin(size, halt):
 
 		# Wait for the mega pumpkin to be ready.
 		while (measure() != measure(West)) and get_entity_type() != None:
-			utils.sleep(200)
+			sleep(200)
 
 		harvest()
 

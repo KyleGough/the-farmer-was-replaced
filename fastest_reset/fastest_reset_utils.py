@@ -18,12 +18,3 @@ def item_halt(item, n):
 	def halt():
 		return num_items(item) >= n
 	return halt
-
-def wait_harvest():
-	while not can_harvest():
-		continue
-	harvest()
-
-def toil():
-	if get_ground_type() == Grounds.Grassland:
-		till()

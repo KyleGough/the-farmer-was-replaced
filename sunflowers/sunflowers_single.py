@@ -1,4 +1,4 @@
-from utils import water
+from utils import toil, water
 from movement import goto
 
 start = num_items(Items.Power)
@@ -25,8 +25,7 @@ def plant_phase():
 	for y in range(size):
 		for x in range(size):
 			water()
-			if get_ground_type() == Grounds.Grassland:
-				till()
+			toil()
 			plant(Entities.Sunflower)
 			petals = measure()
 			petal_map[petals].add((x, y))

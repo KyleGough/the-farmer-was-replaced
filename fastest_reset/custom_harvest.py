@@ -1,4 +1,5 @@
-from fastest_reset_utils import toil, wait_harvest
+from utils import toil, wait_harvest
+from fastest_reset_utils import toil
 from movement import goto, goto_y
 
 def static_harvest(n):
@@ -38,8 +39,7 @@ def balanced_3x3(halt):
 		move(East)
 		for _ in range(3):
 			wait_harvest()
-			if get_ground_type() == Grounds.Grassland:
-				till()
+			toil()
 			plant(Entities.Carrot)
 			move(North)
 		move(East)
@@ -68,8 +68,7 @@ def balanced_3x3_tree(halt):
 		# Third column.
 		for _ in range(3):
 			harvest()
-			if get_ground_type() == Grounds.Grassland:
-				till()
+			toil()
 			plant(Entities.Carrot)
 			move(North)
 		move(East)

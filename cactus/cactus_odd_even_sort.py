@@ -1,4 +1,4 @@
-from utils import sleep
+from utils import sleep, toil
 from movement import goto
 from distribute import distribute_drones
 
@@ -14,8 +14,7 @@ def plant_stage(drone_count, size):
 	if drone_count == size:
 		def plant_row():
 			for _ in range(size):
-				if get_ground_type() == Grounds.Grassland:
-					till()
+				toil()
 				plant(Entities.Cactus)
 				move(East)
 		distribute_drones(plant_row)
@@ -28,8 +27,7 @@ def plant_stage(drone_count, size):
 def plant_cacti_partition(height, size):
 	for _ in range(height):
 		for _ in range(size):
-			if get_ground_type() == Grounds.Grassland:
-				till()
+			toil()
 			plant(Entities.Cactus)
 			move(East)
 		move(South)

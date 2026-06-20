@@ -25,8 +25,8 @@ def simple_farm(fn, halt):
 	else:
 		execute_until(fn, halt)
 
-def water():
-	if get_water() < 0.75:
+def water(n = 0.75):
+	if get_water() < n:
 		use_item(Items.Water)
 
 def harvest_cell(entity):
@@ -41,3 +41,12 @@ def harvest_cell(entity):
 
 def never_halt():
 	return False
+
+def toil():
+	if get_ground_type() == Grounds.Grassland:
+		till()
+
+def wait_harvest():
+	while not can_harvest():
+		continue
+	harvest()

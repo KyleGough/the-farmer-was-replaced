@@ -1,11 +1,11 @@
-import utils
+from utils import never_halt, reset, toil, water
 
 def move_down(n):
 	for i in range(n):
 		move(South)
 
 def execute(halt):
-	utils.reset()
+	reset()
 	if num_drones() < max_drones():
 		height = get_world_size() / max_drones()
 		for i in range(max_drones() - 1):
@@ -13,9 +13,8 @@ def execute(halt):
 		harvest_pumpkin(0, height, halt)
 
 def harvest_cell():
-	utils.water()
-	if get_ground_type() == Grounds.Grassland:
-		till()
+	water()
+	toil()
 	if not can_harvest():
 		plant(Entities.Pumpkin)
 		return False
@@ -41,4 +40,4 @@ def harvest_pumpkin(id, height, halt):
 			move(North)
 
 if __name__ == "__main__":
-	execute(utils.never_halt)
+	execute(never_halt)

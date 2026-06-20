@@ -1,11 +1,11 @@
+from utils import toil
 from movement import goto_x, goto_y
 
 def row_sort(size):
 	for x in range(size):
 		goto_x(x)
 		pos = x
-		if get_ground_type() == Grounds.Grassland:
-			till()
+		toil()
 		plant(Entities.Cactus)
 		while pos > 0 and measure() < measure(West):
 			swap(West)
