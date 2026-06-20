@@ -20,8 +20,8 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Carrot_Single](polyculture/carrot_single.py)        | `8m 13s`  | `78`  |
 | [Carrots](polyculture/carrot_polyculture.py)         | `5m 28s`  | `79`  |
 | [Wood](polyculture/tree_polyculture.py)              | `5m 53s`  | `88`  |
-| [Sunflowers](sunflowers/sunflower.py)                | `4m 03s`  | `105` |
-| [Cactus_Single](cactus_single.py)                    | `0m 25s`  | `105` |
+| [Sunflowers](sunflowers/sunflowers.py)               | `4m 03s`  | `105` |
+| [Cactus_Single](cactus/cactus_single.py)             | `0m 25s`  | `105` |
 | [Pumpkins_Single](pumpkin/single_pumpkin.py)         | `9m 01s`  | `130` |
 | [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`  | `151` |
 | [Hay](polyculture/hay_polyculture.py)                | `3m 15s`  | `161` |

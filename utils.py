@@ -17,7 +17,7 @@ def execute_until(fn, halt):
 				move(East)
 			move(South)
 
-# Conditionally runs simple execute or multi-drone execute.append
+# Conditionally runs simple execute or multi-drone execute.
 def simple_farm(fn, halt):
 	reset()
 	if max_drones() > 1:
