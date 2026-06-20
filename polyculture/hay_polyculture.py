@@ -46,7 +46,7 @@ def harvest_phase(companions, halt):
 			water()
 			move(direction)
 
-def alternate_harvest(entity, required, x, y, halt):
+def alternate_harvest(x, y, halt):
 	goto(x, y)
 	companions = prepare_phase()
 	harvest_phase(companions, halt)
@@ -60,9 +60,9 @@ def execute(halt):
 			x = (i * 8) + k + 2
 			y = k + 1
 			if num_drones() < max_drones():
-				spawn_drone(alternate_harvest, Entities.Grass, Entities.Bush, x % size, y % size, halt)
+				spawn_drone(alternate_harvest, x % size, y % size, halt)
 			else:
-				alternate_harvest(Entities.Grass, Entities.Bush, x % size, y % size, halt)
+				alternate_harvest(x % size, y % size, halt)
 
 if __name__ == "__main__":
 	reset()
