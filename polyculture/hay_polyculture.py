@@ -4,7 +4,7 @@
 
 from utils import reset, sleep
 from distribute import distribute_drones
-from polyculture_medium import alternate_harvest
+from polyculture_utils import alternate_harvest
 
 start = num_items(Items.Hay)
 required = start + 2000000000

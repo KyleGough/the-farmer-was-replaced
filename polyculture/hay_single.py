@@ -28,8 +28,9 @@ def prepare_phase():
 
 # Alternates between four spots to harvest and replant.
 def harvest_phase(companions, halt):
+	directions = (North, East, South, West)
 	while not halt():
-		for direction in (North, East, South, West):
+		for direction in directions:
 			wait_harvest()
 			while get_companion() not in companions:
 				harvest()
