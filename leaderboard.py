@@ -3,7 +3,7 @@ filename = {
 	Leaderboards.Wood: "tree_polyculture",
 	Leaderboards.Carrots: "carrot_polyculture",
 	Leaderboards.Cactus: "cactus_odd_even_sort",
-	Leaderboards.Pumpkins: "pumpkin_optimised",
+	Leaderboards.Pumpkins: "pumpkin_distributed",
 	Leaderboards.Pumpkins_Single: "pumpkin_single",
 	Leaderboards.Sunflowers: "sunflowers",
 	Leaderboards.Maze: "maze_multi",

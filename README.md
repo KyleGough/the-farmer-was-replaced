@@ -18,6 +18,7 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Dinosaur](dinosaur/dinosaur_simple.py)              | `14m 41s` | `55`  |
 | [Hay_Single](polyculture/hay_single.py)              | `3m 03s`  | `65`  |
 | [Wood_Single](polyculture/wood_single.py)            | `8m 41s`  | `70`  |
+| [Pumpkins](pumpkin/pumpkin_distributed.py)             | `7m 25s`  | `72`  |
 | [Carrot_Single](polyculture/carrot_single.py)        | `8m 13s`  | `78`  |
 | [Carrots](polyculture/carrot_polyculture.py)         | `5m 28s`  | `79`  |
 | [Wood](polyculture/tree_polyculture.py)              | `5m 53s`  | `88`  |
@@ -25,7 +26,6 @@ Automation scripts for [**The Farmer Was Replaced**](https://store.steampowered.
 | [Cactus_Single](cactus/cactus_single.py)             | `0m 25s`  | `105` |
 | [Pumpkins_Single](pumpkin/pumpkin_single.py)         | `9m 01s`  | `130` |
 | [Cactus](cactus/cactus_odd_even_sort.py)             | `0m 43s`  | `151` |
-| [Pumpkins](pumpkin/pumpkin_optimised.py)             | `9m 00s`  | `209` |
 
 <br />
 
