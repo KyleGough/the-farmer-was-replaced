@@ -1,6 +1,6 @@
 from utils import sleep, toil
 from movement import goto
-from distribute import distribute_drones
+from distribute_column import distribute_drones
 
 start = num_items(Items.Cactus)
 required = start + 33554432

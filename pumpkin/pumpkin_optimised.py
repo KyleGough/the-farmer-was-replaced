@@ -4,7 +4,7 @@
 
 from utils import reset, sleep, toil, water
 from movement import goto_x
-import distribute
+from distribute_column import distribute_drones
 
 start = num_items(Items.Pumpkin)
 required = start + 200000000
@@ -13,7 +13,7 @@ required = start + 200000000
 def execute(halt):
 	reset()
 	size = get_world_size()
-	distribute.distribute_drones(harvest_pumpkin_closure(size, halt))
+	distribute_drones(harvest_pumpkin_closure(size, halt))
 
 def harvest_pumpkin_closure(size, halt):
 	def wrapper():

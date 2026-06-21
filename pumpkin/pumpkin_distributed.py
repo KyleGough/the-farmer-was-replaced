@@ -1,5 +1,6 @@
 from utils import toil, water
 from movement import goto
+from distribute_binary_tree import distribute_binary_tree
 
 start = num_items(Items.Pumpkin)
 required = start + 200000000
@@ -53,7 +54,9 @@ def harvest_half(x, y, size):
 def harvest_pumpkin(x, y, size, halt):
 	goto(x, y)
 	while not halt():
+		# Right half.
 		d = spawn_drone(harvest_half, x + size // 2, y, size)
+		# Left half.
 		harvest_half(x, y, size)
 		wait_for(d)
 		harvest()
@@ -78,11 +81,7 @@ workers = (
 )
 
 def execute(halt):
-	for (x, y, size) in workers:
-		if num_drones() < max_drones():
-			spawn_drone(harvest_pumpkin, x, y, size, halt)
-		else:
-			harvest_pumpkin(x, y, size, halt)
+	distribute_binary_tree(harvest_pumpkin, workers, halt)
 
 if __name__ == "__main__":
 	clear()
