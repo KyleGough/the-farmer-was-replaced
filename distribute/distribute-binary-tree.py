@@ -4,8 +4,8 @@ from movement import goto
 def spawn_drones_binary_tree(fn, workers, halt, start, end):
 	count = end - start
 	if count == 1:
-		x, y, size = workers[start]
-		fn(x, y, size, halt)
+		args = workers[start]
+		fn(args, halt)
 		return
 
 	mid = start + count // 2

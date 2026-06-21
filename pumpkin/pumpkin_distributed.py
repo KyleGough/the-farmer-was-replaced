@@ -51,7 +51,8 @@ def harvest_half(x, y, size):
 				next_pass.add((rx, ry))
 		dead_pumpkins = next_pass
 
-def harvest_pumpkin(x, y, size, halt):
+def harvest_pumpkin(args, halt):
+	x, y, size = args
 	goto(x, y)
 	while not halt():
 		# Right half.

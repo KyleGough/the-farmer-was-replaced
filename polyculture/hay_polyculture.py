@@ -2,9 +2,11 @@
 # Preplant bush and ensure when planting hay that the companion is a bush. - Saved ~ 2 minutes
 # Replant once instead of until indefinitely until the companion is a bush. - Saved ~ 15 seconds.
 # Use 4 alternating tiles instead of 2 and improve bush planting. - Saved ~ 1 minute.
+# Use distribute_binary_tree. - Saved ~ 1 second.
 
 from utils import reset, wait_harvest, water
 from movement import goto
+from distribute_binary_tree import distribute_binary_tree
 
 start = num_items(Items.Hay)
 required = start + 2000000000
@@ -46,23 +48,25 @@ def harvest_phase(companions, halt):
 			water()
 			move(direction)
 
-def alternate_harvest(x, y, halt):
-	goto(x, y)
+def alternate_harvest(args, halt):
+	x, y, size = args
+	goto(x % size, y % size)
 	companions = prepare_phase()
 	harvest_phase(companions, halt)
 
 def execute(halt):
 	size = get_world_size()
 
+	workers = []
+
 	for i in range(4):
 		for j in range(8):
 			k = j * 4
 			x = (i * 8) + k + 2
 			y = k + 1
-			if num_drones() < max_drones():
-				spawn_drone(alternate_harvest, x % size, y % size, halt)
-			else:
-				alternate_harvest(x % size, y % size, halt)
+			workers.append((x, y, size))
+
+	distribute_binary_tree(alternate_harvest, workers, halt)
 
 if __name__ == "__main__":
 	reset()

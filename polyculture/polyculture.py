@@ -1,5 +1,6 @@
 from utils import reset
-from movement import goto, goto_x, goto_y
+from movement import goto, goto_y, goto_x
+from distribute_binary_tree import distribute_binary_tree
 
 # Relative positions of the companion drones.
 positions = [(0, 0), (3, 1), (2, -2), (5, -1)]
@@ -63,7 +64,8 @@ def plant_primary(primary, x, y, weird_substance):
 
 	plant(primary)
 
-def drone_execute(primary, x, y, size, weird_substance, halt):
+def drone_execute(args, halt):
+	primary, x, y, size, weird_substance = args
 	for (cx, cy) in positions:
 		init_plant(primary, x + cx, y + cy)
 	while not halt():
@@ -72,12 +74,12 @@ def drone_execute(primary, x, y, size, weird_substance, halt):
 def execute(primary, halt, weird_substance = False):
 	reset()
 	size = get_world_size()
+	workers = []
 
 	for i in range(4):
 		for j in range(8):
 			x = (i * 8) + (j * 4)
 			y = (j * 4) + 2
-			if num_drones() < max_drones():
-				spawn_drone(drone_execute, primary, x  % size, y % size, size, weird_substance, halt)
-			else:
-				drone_execute(primary, x % size, y % size, size, weird_substance, halt)
+			workers.append((primary, x % size, y % size, size, weird_substance))
+
+	distribute_binary_tree(drone_execute, workers, halt)
